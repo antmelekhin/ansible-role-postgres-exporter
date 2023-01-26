@@ -8,6 +8,11 @@
         update_cache: true
       when: ansible_os_family == 'Debian'
 
+    - name: 'Ensure a locale exists'
+      locale_gen:
+        name: 'en_US.UTF-8'
+        state: present
+
   roles:
     - role: geerlingguy.postgresql
       postgresql_users:
