@@ -27,9 +27,9 @@ jobs:
 
       - name: 'Install tar for delegated to localhost tasks'
         run: |
-          apt update &&
-          sudo apt upgrade -y &&
-          sudo apt install tar -y
+          sudo apt-get update &&
+          sudo apt-get upgrade -y &&
+          sudo apt-get install tar -y
 
       - name: 'Test role'
         uses: gofrolist/molecule-action@v2
