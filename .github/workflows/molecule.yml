@@ -28,8 +28,8 @@ jobs:
       - name: 'Install tar for delegated to localhost tasks'
         run: |
           apt update &&
-          apt upgrade -y &&
-          apt install tar -y
+          sudo apt upgrade -y &&
+          sudo apt install tar -y
 
       - name: 'Test role'
         uses: gofrolist/molecule-action@v2
