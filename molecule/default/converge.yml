@@ -21,4 +21,4 @@
           template: 'template0'
           owner: 'molecule'
 
-    - role: ansible-role-postgres-exporter
+    - role: antmelekhin.postgres_exporter

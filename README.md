@@ -45,7 +45,7 @@ Example Playbook
     hosts: all
 
     roles:
-      - role: ansible-role-postgres-exporter
+      - role: antmelekhin.postgres_exporter
   ```
 
 License
