@@ -1,0 +1,5 @@
+---
+- name: 'Windows | Create Postgres Exporter directory'
+  win_file:
+    path: '{{ postgres_exporter_install_path }}'
+    state: directory

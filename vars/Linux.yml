@@ -1,4 +1,6 @@
 ---
+_postgres_exporter_os: 'linux'
+
 _postgres_exporter_architecture_map:
   i386: '386'
   x86_64: 'amd64'
@@ -7,3 +9,7 @@ _postgres_exporter_architecture_map:
   armv6l: 'armv6'
 
 _postgres_exporter_architecture: '{{ _postgres_exporter_architecture_map[ansible_architecture] | default(ansible_architecture) }}'
+
+_postgres_exporter_install_path: '/usr/local/bin'
+
+_postgres_exporter_data_source_name: 'user=postgres host=/var/run/postgresql/ sslmode=disable'

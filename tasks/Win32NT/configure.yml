@@ -1,0 +1,45 @@
+---
+- name: 'Windows | Set an environment variable for Postgres Exporter'
+  win_environment:
+    level: machine
+    name: 'DATA_SOURCE_NAME'
+    value: '{{ postgres_exporter_data_source_name }}'
+    state: present
+
+- name: 'Windows | Ensure scheduled task for Postgres Exporter is enabled at boot'
+  win_scheduled_task:
+    name: 'Postgres Exporter'
+    description: 'Prometheus exporter for Postgres server metrics.'
+    actions:
+      - path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
+        arguments: '--web.listen-address=0.0.0.0:9187 --log.level=info --auto-discover-databases'
+    triggers:
+      - type: 'boot'
+    execution_time_limit: 'PT0S'
+    username: 'SYSTEM'
+    enabled: true
+    state: present
+
+- name: 'Windows | Get scheduled task for Postgres Exporter status'
+  win_scheduled_task_stat:
+    name: 'Postgres Exporter'
+  register: _postgres_exporter_scheduled_task_stat
+
+- name: 'Windows | Ensure scheduled task for Postgres Exporter is running'
+  win_shell: |
+    Start-ScheduledTask -TaskName 'Postgres Exporter' -AsJob
+  when: not ansible_check_mode and
+    _postgres_exporter_scheduled_task_stat.state.status != 'TASK_STATE_RUNNING'
+
+- name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
+  win_firewall_rule:
+    name: 'Postgres Exporter'
+    description: 'Inbound rule for Postgres Exporter'
+    program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
+    localport: 9187
+    action: allow
+    direction: in
+    protocol: tcp
+    profiles: 'domain,private'
+    enabled: true
+    state: present
