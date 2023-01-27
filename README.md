@@ -1,38 +1,43 @@
 Postgres Exporter
 =================
 
-Ansible роль для установки, настройки и обновления [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
+An Ansible role for install, configure and update [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
 
-Требования
-----------
+Requirements
+------------
 
-- Поддерживаемая версия Ansible: 2.7 и выше.
-- `pywinrm` для подключения [Ansible через WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html) (для Windows).
-- `gnu-tar` при использовании Mac в качестве управляющего хоста (`brew install gnu-tar`).
-- Список поддерживаемых платформ описан в файле метаданных роли.
+- Supported version of Ansible: 2.9 and highter.
+- `gnu-tar` on Mac as deployer host (`brew install gnu-tar`).
+- List of all supported platforms described in role meta.
 
-Используемые переменные
------------------------
+Role Variables
+--------------
 
-- `postgres_exporter_version` Версия Postgres Exporter для установки (default: `0.11.1`).
-- `postgres_exporter_package_name` Имя пакета.
-- `postgres_exporter_download_url` Ссылка на скачивание архива с приложением.
-- `postgres_exporter_user` Unix имя пользователя (default: `postgres`).
-- `postgres_exporter_group` Unix группа пользователя (default: `postgres`).
-- `postgres_exporter_install_path` Каталог, в который будет распакован бинарник (default: `/usr/local/bin`).
-- `postgres_exporter_data_source_name` Строка подключения к БД (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
-- `postgres_exporter_extend_query_path` Путь до YAML файла содержащего дополнительные sql-запросы для записи метрик (default: `''`).
-- `postgres_exporter_log_level` Уровень логирования экспортера (default: `info`).
+- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.11.1`).
+- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-{{ postgres_exporter_version }}.linux-{{ _postgres_exporter_architecture }}`).
+- `postgres_exporter_archive_extension` Postgres Exporter archive extension (default: `tar.gz`)
+- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter.
+- `postgres_exporter_user` and `postgres_exporter_group` Unix username and group (default: `postgres`).
+- `postgres_exporter_install_path` Path to Postgres Exporter installation directory (default: `/usr/local/bin`).
+- `postgres_exporter_data_source_name` Accepts URI form and key=value form arguments. The URI may contain the username and password to connect with. (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
+- `postgres_exporter_extend_query_path` Path to a YAML file containing custom queries to run. (default: `''`).
+- `postgres_exporter_log_level` Postgres Exporter logging level.
 
-Зависимости
------------
+  Available values:
+  - `debug`
+  - `info` (default)
+  - `warn`
+  - `error`
 
-Отсутствуют.
+Dependencies
+------------
 
-Пример использования
---------------------
+None.
 
-- Устанавливаем и настраиваем Postgres Exporter:
+Example Playbook
+----------------
+
+- Install and configure Postgres Exporter:
 
   ```yaml
   ---
@@ -40,15 +45,15 @@ Ansible роль для установки, настройки и обновле
     hosts: all
 
     roles:
-      - role: ansible-role-postgres-exporter
+      - role: antmelekhin.postgres_exporter
   ```
 
-Лицензия
---------
+License
+-------
 
 MIT
 
-Информация об авторе
---------------------
+Author Information
+------------------
 
-Мелехин Антон.
+Melekhin Anton.

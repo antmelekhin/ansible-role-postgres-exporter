@@ -1,11 +1,31 @@
 ---
-- name: Converge
+- name: 'Prepare an Ansible host for Github Actions'
+  hosts: localhost
+
+  tasks:
+    - name: 'Install tar for delegated to localhost tasks'
+      apk:
+        name: tar
+        update_cache: true
+      when: ansible_os_family == 'Alpine'
+
+- name: 'Converge'
   hosts: all
+  vars:
+    locale: 'en_US.UTF-8'
 
   pre_tasks:
     - name: 'Update APT cache'
       ansible.builtin.apt:
         update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: 'Set database locale if using RedHat 8'
+      set_fact:
+        locale: 'C.UTF-8'
+      when:
+        - ansible_os_family == 'RedHat' and
+          ansible_distribution_major_version == '8'
 
   roles:
     - role: geerlingguy.postgresql
@@ -15,10 +35,10 @@
           role_attr_flags: SUPERUSER
       postgresql_databases:
         - name: 'molecule'
-          lc_collate: 'en_US.UTF-8'
-          lc_ctype: 'en_US.UTF-8'
+          lc_collate: '{{ locale }}'
+          lc_ctype: '{{ locale }}'
           encoding: 'UTF-8'
           template: 'template0'
           owner: 'molecule'
 
-    - role: ansible-role-postgres-exporter
+    - role: antmelekhin.postgres_exporter
