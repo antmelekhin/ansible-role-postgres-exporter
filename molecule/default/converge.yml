@@ -4,7 +4,7 @@
   tasks:
     - name: Filter and return only selected facts
       ansible.builtin.setup:
-        filter: 'ansible_distribution*'
+        filter: 'ansible_os_family'
       register: facts
 
     - name: 'Debug'
