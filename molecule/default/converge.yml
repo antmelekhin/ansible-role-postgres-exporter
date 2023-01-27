@@ -1,55 +1,44 @@
 ---
-- name: Converge
-  hosts: all
+- name: 'Prepare an Ansible host for Github Actions'
+  hosts: localhost
+
   tasks:
-    - name: Filter and return only selected facts
-      ansible.builtin.setup:
-        filter: 'ansible_os_family'
-      register: facts
+    - name: 'Install tar for delegated to localhost tasks'
+      apk:
+        name: tar
+        update_cache: true
+      when: ansible_os_family == 'Alpine'
 
-    - name: 'Debug'
-      ansible.builtin.debug:
-        var: facts
-# - name: 'Prepare an Ansible host'
-#   hosts: localhost
+- name: 'Converge'
+  hosts: all
+  vars:
+    locale: 'en_US.UTF-8'
 
-#   tasks:
-#     - name: 'Install tar for delegated to localhost tasks'
-#       apk:
-#         name: tar
-#         update_cache: true
-#       when: ansible_os_family == 'Alpine'
+  pre_tasks:
+    - name: 'Update APT cache'
+      ansible.builtin.apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
 
-# - name: Converge
-#   hosts: all
-#   vars:
-#     locale: 'en_US.UTF-8'
+    - name: 'Set database locale if using RedHat 8'
+      set_fact:
+        locale: 'C.UTF-8'
+      when:
+        - ansible_os_family == 'RedHat' and
+          ansible_distribution_major_version == '8'
 
-#   pre_tasks:
-#     - name: 'Update APT cache'
-#       ansible.builtin.apt:
-#         update_cache: true
-#       when: ansible_os_family == 'Debian'
+  roles:
+    - role: geerlingguy.postgresql
+      postgresql_users:
+        - name: 'molecule'
+          password: 'molecule'
+          role_attr_flags: SUPERUSER
+      postgresql_databases:
+        - name: 'molecule'
+          lc_collate: '{{ locale }}'
+          lc_ctype: '{{ locale }}'
+          encoding: 'UTF-8'
+          template: 'template0'
+          owner: 'molecule'
 
-#     - name: 'Set database locale if using RedHat 8'
-#       set_fact:
-#         locale: 'C.UTF-8'
-#       when:
-#         - ansible_os_family == 'RedHat' and
-#           ansible_distribution_major_version == 8
-
-#   roles:
-#     - role: geerlingguy.postgresql
-#       postgresql_users:
-#         - name: 'molecule'
-#           password: 'molecule'
-#           role_attr_flags: SUPERUSER
-#       postgresql_databases:
-#         - name: 'molecule'
-#           lc_collate: '{{ locale }}'
-#           lc_ctype: '{{ locale }}'
-#           encoding: 'UTF-8'
-#           template: 'template0'
-#           owner: 'molecule'
-
-#     - role: antmelekhin.postgres_exporter
+    - role: antmelekhin.postgres_exporter
