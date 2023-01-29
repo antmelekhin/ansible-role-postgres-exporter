@@ -1,18 +1,19 @@
 ---
-- name: 'Linux | Create Postgres Exporter group'
-  ansible.builtin.group:
-    name: '{{ postgres_exporter_group }}'
-    system: true
-  when: postgres_exporter_group != 'postgres'
-  become: true
+- name: 'Prepare to install Postgres Exporter'
+  block:
+    - name: 'Linux | Create Postgres Exporter group'
+      ansible.builtin.group:
+        name: '{{ postgres_exporter_group }}'
+        system: true
+      when: postgres_exporter_group != 'postgres'
 
-- name: 'Linux | Create Postgres Exporter user'
-  ansible.builtin.user:
-    name: '{{ postgres_exporter_user }}'
-    group: '{{ postgres_exporter_group }}'
-    comment: 'Postgres Exporter'
-    system: true
-    createhome: false
-    shell: '/bin/false'
-  when: postgres_exporter_user != 'postgres'
+    - name: 'Linux | Create Postgres Exporter user'
+      ansible.builtin.user:
+        name: '{{ postgres_exporter_user }}'
+        group: '{{ postgres_exporter_group }}'
+        comment: 'Postgres Exporter'
+        system: true
+        createhome: false
+        shell: '/bin/false'
+      when: postgres_exporter_user != 'postgres'
   become: true
