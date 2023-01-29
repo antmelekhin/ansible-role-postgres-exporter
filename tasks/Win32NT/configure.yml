@@ -6,30 +6,33 @@
     value: '{{ postgres_exporter_data_source_name }}'
     state: present
 
+- name: 'Windows | Set arguments'
+  ansible.builtin.set_fact:
+    _postgres_exporter_arguments: >-
+      --web.listen-address 0.0.0.0:9187
+      {%- if postgres_exporter_extend_query_path | length > 0 %} --extend.query-path {{ postgres_exporter_extend_query_path }} {%- endif %}
+      --log.level {{ postgres_exporter_log_level }}
+
 - name: 'Windows | Ensure scheduled task for Postgres Exporter is enabled at boot'
   win_scheduled_task:
     name: 'Postgres Exporter'
     description: 'Prometheus exporter for Postgres server metrics.'
     actions:
       - path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
-        arguments: '--web.listen-address=0.0.0.0:9187 --log.level=info --auto-discover-databases'
+        arguments: '{{ _postgres_exporter_arguments }}'
     triggers:
       - type: 'boot'
     execution_time_limit: 'PT0S'
     username: 'SYSTEM'
     enabled: true
     state: present
-
-- name: 'Windows | Get scheduled task for Postgres Exporter status'
-  win_scheduled_task_stat:
-    name: 'Postgres Exporter'
-  register: _postgres_exporter_scheduled_task_stat
+  register: _postgres_exporter_scheduled_task
 
 - name: 'Windows | Ensure scheduled task for Postgres Exporter is running'
-  win_shell: |
-    Start-ScheduledTask -TaskName 'Postgres Exporter' -AsJob
-  when: not ansible_check_mode and
-    _postgres_exporter_scheduled_task_stat.state.status != 'TASK_STATE_RUNNING'
+  win_shell: schtasks /end /tn 'Postgres Exporter'; schtasks /run /tn 'Postgres Exporter'
+  when:
+    - not ansible_check_mode
+    - _postgres_exporter_scheduled_task is changed
 
 - name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
   win_firewall_rule:
@@ -40,6 +43,6 @@
     action: allow
     direction: in
     protocol: tcp
-    profiles: 'domain,private'
+    profiles: 'domain,private,public'
     enabled: true
     state: present
