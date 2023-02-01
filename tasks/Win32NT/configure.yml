@@ -1,0 +1,52 @@
+---
+- name: 'Windows | Set an environment variable for Postgres Exporter'
+  win_environment:
+    level: machine
+    name: 'DATA_SOURCE_NAME'
+    value: '{{ postgres_exporter_data_source_name }}'
+    state: present
+
+- name: 'Windows | Set arguments'
+  ansible.builtin.set_fact:
+    _postgres_exporter_arguments: >-
+      --web.listen-address {{ postgres_exporter_listen_address }}:{{ postgres_exporter_listen_port }}
+      --web.telemetry-path {{ postgres_exporter_metrics_path }}
+      {%- if postgres_exporter_disable_default_metrics | bool %} --disable-default-metrics {%- endif %}
+      {%- if postgres_exporter_disable_settings_metrics | bool %} --disable-settings-metrics {%- endif %}
+      {%- if postgres_exporter_extend_query_path | length > 0 %} --extend.query-path {{ postgres_exporter_extend_query_path }} {%- endif %}
+      --log.level {{ postgres_exporter_log_level }}
+      --log.format {{ postgres_exporter_log_format }}
+
+- name: 'Windows | Ensure scheduled task for Postgres Exporter is enabled at boot'
+  win_scheduled_task:
+    name: 'Postgres Exporter'
+    description: 'Prometheus exporter for Postgres server metrics.'
+    actions:
+      - path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
+        arguments: '{{ _postgres_exporter_arguments }}'
+    triggers:
+      - type: 'boot'
+    execution_time_limit: 'PT0S'
+    username: 'SYSTEM'
+    enabled: true
+    state: present
+  register: _postgres_exporter_scheduled_task
+
+- name: 'Windows | Ensure scheduled task for Postgres Exporter is running'
+  win_shell: schtasks /end /tn 'Postgres Exporter'; schtasks /run /tn 'Postgres Exporter'
+  when:
+    - not ansible_check_mode
+    - _postgres_exporter_scheduled_task is changed
+
+- name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
+  win_firewall_rule:
+    name: 'Postgres Exporter'
+    description: 'Inbound rule for Postgres Exporter'
+    program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
+    localport: '{{ postgres_exporter_listen_port }}'
+    action: allow
+    direction: in
+    protocol: tcp
+    profiles: 'domain,private,public'
+    enabled: true
+    state: present

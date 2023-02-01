@@ -11,11 +11,19 @@ User={{ postgres_exporter_user }}
 Group={{ postgres_exporter_group }}
 Environment="DATA_SOURCE_NAME={{ postgres_exporter_data_source_name }}"
 ExecStart={{ postgres_exporter_install_path }}/postgres_exporter \
-    --web.listen-address=0.0.0.0:9187
+    --web.listen-address {{ postgres_exporter_listen_address }}:{{ postgres_exporter_listen_port }} \
+    --web.telemetry-path {{ postgres_exporter_metrics_path }} \
+{% if postgres_exporter_disable_default_metrics | bool %}
+    --disable-default-metrics \
+{% endif %}
+{% if postgres_exporter_disable_settings_metrics | bool %}
+    --disable-settings-metrics \
+{% endif %}
 {% if postgres_exporter_extend_query_path | length > 0 %}
     --extend.query-path {{ postgres_exporter_extend_query_path }} \
 {% endif %}
-    --log.level={{ postgres_exporter_log_level }}
+    --log.level {{ postgres_exporter_log_level }} \
+    --log.format {{ postgres_exporter_log_format }}
 
 [Install]
 WantedBy=multi-user.target
