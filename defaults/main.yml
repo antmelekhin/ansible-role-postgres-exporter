@@ -16,5 +16,11 @@ postgres_exporter_install_path: '{{ _postgres_exporter_install_path }}'
 postgres_exporter_data_source_name: '{{ _postgres_exporter_data_source_name }}'
 
 # See available settings flags: https://github.com/prometheus-community/postgres_exporter#flags
+postgres_exporter_listen_address: '0.0.0.0'
+postgres_exporter_listen_port: 9187
+postgres_exporter_metrics_path: '/metrics'
+postgres_exporter_disable_default_metrics: false
+postgres_exporter_disable_settings_metrics: false
 postgres_exporter_extend_query_path: ''
 postgres_exporter_log_level: 'info'
+postgres_exporter_log_format: 'logfmt'
