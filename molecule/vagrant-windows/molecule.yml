@@ -30,6 +30,6 @@ provisioner:
         ansible_winrm_server_cert_validation: ignore
         ansible_become: false
   playbooks:
-    verify: ../resources/tests/win_verify.yml
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
   name: ansible
