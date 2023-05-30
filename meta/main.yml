@@ -12,7 +12,7 @@ galaxy_info:
   platforms:
     - name: Amazon Linux
       versions:
-        - '2'
+        - 'all'
     - name: Debian
       versions:
         - 'buster'

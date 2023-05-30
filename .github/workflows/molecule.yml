@@ -13,9 +13,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - distro: 'amazonlinux-2'
-          - distro: 'rockylinux-8'
           - distro: 'debian-11'
+          - distro: 'rockylinux-8'
           - distro: 'ubuntu-22.04'
 
     steps:
