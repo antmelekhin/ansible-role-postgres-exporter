@@ -9,7 +9,21 @@ Requirements
 - Supported version of Ansible: 2.9 and highter.
 - `gnu-tar` on Mac as deployer host (`brew install gnu-tar`).
 - `pywinrm` is a python library for connection Ansible to Windows hosts via [WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html).
-- List of all supported platforms described in role meta.
+- Supported platforms:
+  - RHEL
+    - 7
+    - 8
+  - Ubuntu
+    - 18.04
+    - 20.04
+    - 22.04
+  - Debian
+    - 10
+    - 11
+  - Windows
+    - 2016
+    - 2019
+    - 2022
 
 Role Variables
 --------------
