@@ -1,5 +1,6 @@
 ---
 - name: 'Prepare to install Postgres Exporter'
+  become: true
   block:
     - name: 'Linux | Create Postgres Exporter group'
       ansible.builtin.group:
@@ -16,4 +17,3 @@
         createhome: false
         shell: '/bin/false'
       when: postgres_exporter_user != 'postgres'
-  become: true

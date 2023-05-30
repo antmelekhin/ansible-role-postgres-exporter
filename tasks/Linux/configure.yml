@@ -1,5 +1,6 @@
 ---
 - name: 'Configure and start Postgres Exporter'
+  become: true
   block:
     - name: 'Linux | Configure SystemD unit for Postgres Exporter'
       ansible.builtin.template:
@@ -8,12 +9,6 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         mode: 0644
-      register: _postgres_exporter_service
-
-    - name: 'Linux | Reload systemd daemon if unit file is changed'
-      ansible.builtin.systemd:
-        daemon_reload: true
-      when: _postgres_exporter_service is changed
       notify: Linux | Restart Postgres Exporter
 
     - name: 'Linux | Ensure Postgres Exporter is running and enabled at boot'
@@ -21,4 +16,3 @@
         name: postgres_exporter
         state: started
         enabled: true
-  become: true

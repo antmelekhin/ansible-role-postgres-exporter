@@ -1,11 +1,13 @@
 ---
 dependency:
   name: galaxy
+  enabled: true
 driver:
   name: vagrant
 lint: |
   set -e
   yamllint .
+  ansible-lint
 platforms:
   - name: instance
     box: 'jborean93/WindowsServer2019'
@@ -28,6 +30,6 @@ provisioner:
         ansible_winrm_server_cert_validation: ignore
         ansible_become: false
   playbooks:
-    verify: ../resources/tests/win_verify.yml
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
   name: ansible
