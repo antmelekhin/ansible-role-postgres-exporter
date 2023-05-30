@@ -1,5 +1,6 @@
 ---
 - name: 'Configure and start Postgres Exporter'
+  become: true
   block:
     - name: 'Linux | Configure SystemD unit for Postgres Exporter'
       ansible.builtin.template:
@@ -21,4 +22,3 @@
         name: postgres_exporter
         state: started
         enabled: true
-  become: true

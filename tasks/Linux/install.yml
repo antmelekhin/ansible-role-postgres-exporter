@@ -7,6 +7,9 @@
   register: _postgres_exporter_version_check
 
 - name: 'Linux | Download and unarchive Postgres Exporter'
+  when:
+    - _postgres_exporter_version_check.stdout is not defined or
+      postgres_exporter_version not in _postgres_exporter_version_check.stdout
   block:
     - name: 'Linux | Download Postgres Exporter binary to local folder'
       ansible.builtin.get_url:
@@ -34,6 +37,3 @@
       notify: Linux | Restart Postgres Exporter
       when: not ansible_check_mode
       become: true
-  when:
-    - _postgres_exporter_version_check.stdout is not defined or
-      postgres_exporter_version not in _postgres_exporter_version_check.stdout
