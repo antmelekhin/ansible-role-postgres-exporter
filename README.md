@@ -10,6 +10,11 @@ Requirements
 - `gnu-tar` on Mac as deployer host (`brew install gnu-tar`).
 - `pywinrm` is a python library for connection Ansible to Windows hosts via [WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html).
 - Supported platforms:
+  - Amazon Linux
+    - 2
+  - Debian
+    - 10
+    - 11
   - RHEL
     - 7
     - 8
@@ -17,9 +22,6 @@ Requirements
     - 18.04
     - 20.04
     - 22.04
-  - Debian
-    - 10
-    - 11
   - Windows
     - 2016
     - 2019
