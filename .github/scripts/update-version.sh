@@ -11,7 +11,8 @@ RED='\033[0;31m'
 NO_COLOR='\e[0m'
 
 # Get latest version
-URL='https://api.github.com/repos/prometheus-community/postgres_exporter/releases/latest'
+SOFTWARE="$1"
+URL="https://api.github.com/repos/prometheus-community/${SOFTWARE}/releases/latest"
 VERSION="$(curl --silent $URL | jq '.tag_name' | tr -d '"v')"
 
 if grep "_version: '${VERSION}'" 'defaults/main.yml'; then
@@ -21,12 +22,11 @@ fi
 
 # Update latest version
 sed -i "s/_version:.*$/_version: '${VERSION}'/" 'defaults/main.yml'
-sed -i -r "s/_version.*[0-9]+\.[0-9]+\.[0-9]+/_version\` | ${version}/" 'README.md'
 
 # Repository variables
 REPO_NAME=$(git config --get remote.origin.url | sed -e 's|^https://github.com/||')
 UPDATE_VERSION_BRANCH="update-to-${VERSION}"
-UPDATE_VERSION_COMMIT="patch: version updated to ${VERSION}"
+UPDATE_VERSION_COMMIT="fix(version): ${SOFTWARE} updated to \`${VERSION}\` release"
 
 # Create an update branch
 REMOTE_BRANCH="$(curl --silent https://api.github.com/repos/${REPO_NAME}/branches/${UPDATE_VERSION_BRANCH} | jq -r .name)"
@@ -50,7 +50,7 @@ else
 fi
 
 # Create Pull Request
-PR_MESSAGE="The upstream [postgres_exporter](https://github.com/prometheus-community/postgres_exporter/releases) released new software version - **${VERSION}**!\n\nThis automated PR updates code to bring new version into repository."
+PR_MESSAGE="The upstream [${SOFTWARE}](https://github.com/prometheus-community/${SOFTWARE}/releases) released new software version - **${VERSION}**!\n\nThis automated PR updates code to bring new version into repository."
 JSON="$(printf '{"title":"%s","body":"%s","head":"%s","base":"%s"}' "${UPDATE_VERSION_COMMIT}" "${PR_MESSAGE}" "${UPDATE_VERSION_BRANCH}" "main")"
 
 curl -L \
