@@ -1,7 +1,6 @@
 ---
 branches: ['main']
 preset: 'conventionalcommits'
-tagFormat: '${version}'
 ci: false
 
 verifyConditions:
