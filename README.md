@@ -11,7 +11,7 @@ Requirements
 - `pywinrm` is a python library for connection Ansible to Windows hosts via [WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html).
 - Supported platforms:
   - Amazon Linux
-    - all
+    - 2013
   - Debian
     - 10
     - 11
@@ -25,15 +25,14 @@ Requirements
   - Windows
     - 2016
     - 2019
-    - 2022
 
 Role Variables
 --------------
 
-- `postgres_exporter_version` The specific version of Postgres Exporter to download.
-- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `'postgres_exporter-{{ postgres_exporter_version }}.linux-amd64'` or `'postgres_exporter-{{ postgres_exporter_version }}.windows-amd64'`).
+- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.12.0`).
+- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-0.12.0.linux-amd64` or `postgres_exporter-0.12.0.windows-amd64`).
 - `postgres_exporter_archive_extension` Postgres Exporter archive extension (default: `tar.gz`)
-- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}`).
+- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.12.0`).
 - `postgres_exporter_user` and `postgres_exporter_group` Unix username and group (default: `postgres`).
 - `postgres_exporter_install_path` Path to Postgres Exporter installation directory (default: `/usr/local/bin`).
 - `postgres_exporter_data_source_name` Accepts URI form and key=value form arguments. The URI may contain the username and password to connect with. (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
@@ -51,7 +50,7 @@ Role Variables
   - `warn`
   - `error`
 
-- `postgres_exporter_log_format` Postgres Exporter logging format.
+- `postgres_exporter_log_format` Output format of log messages.
 
   Available values:
   - `logfmt` (default)
