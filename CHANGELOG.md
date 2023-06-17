@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.3](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.0.2...v1.0.3) (2023-06-17)
+
+
+### Docs
+
+* update supported os ([3d1f4b2](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/3d1f4b2d1c0d3e18423d2b0b74df59e2c7526548))
+
+
+### Fixes
+
+* change module used in windows task ([b1298d0](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/b1298d0b184756f2ad5ac14542df27893623ba68))
+* update `postgres_exporter_web_*` variables ([13a4c4c](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/13a4c4c9a1341ef847c3687bb3376eba18fb7bb3))
+
 ## [1.0.2](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.0.1...v1.0.2) (2023-06-04)
 
 
