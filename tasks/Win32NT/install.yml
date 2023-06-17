@@ -1,6 +1,6 @@
 ---
 - name: 'Windows | Check if Postgres Exporter is installed'
-  ansible.builtin.stat:
+  ansible.builtin.win_stat:
     path: '{{ postgres_exporter_install_path }}/postgres_exporter'
   register: _postgres_exporter_is_installed
 
