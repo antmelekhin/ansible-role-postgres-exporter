@@ -11,8 +11,8 @@ User={{ postgres_exporter_user }}
 Group={{ postgres_exporter_group }}
 Environment="DATA_SOURCE_NAME={{ postgres_exporter_data_source_name }}"
 ExecStart={{ postgres_exporter_install_path }}/postgres_exporter \
-    --web.listen-address {{ postgres_exporter_listen_address }}:{{ postgres_exporter_listen_port }} \
-    --web.telemetry-path {{ postgres_exporter_metrics_path }} \
+    --web.listen-address {{ postgres_exporter_web_listen_address }}:{{ postgres_exporter_web_listen_port }} \
+    --web.telemetry-path {{ postgres_exporter_web_telemetry_path }} \
 {% if postgres_exporter_disable_default_metrics | bool %}
     --disable-default-metrics \
 {% endif %}

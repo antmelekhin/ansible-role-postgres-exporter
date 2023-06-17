@@ -9,8 +9,8 @@
 - name: 'Windows | Set arguments'
   ansible.builtin.set_fact:
     _postgres_exporter_arguments: >-
-      --web.listen-address {{ postgres_exporter_listen_address }}:{{ postgres_exporter_listen_port }}
-      --web.telemetry-path {{ postgres_exporter_metrics_path }}
+      --web.listen-address {{ postgres_exporter_web_listen_address }}:{{ postgres_exporter_web_listen_port }}
+      --web.telemetry-path {{ postgres_exporter_web_telemetry_path }}
       {%- if postgres_exporter_disable_default_metrics | bool %} --disable-default-metrics {%- endif %}
       {%- if postgres_exporter_disable_settings_metrics | bool %} --disable-settings-metrics {%- endif %}
       {%- if postgres_exporter_extend_query_path | length > 0 %} --extend.query-path {{ postgres_exporter_extend_query_path }} {%- endif %}
@@ -43,7 +43,7 @@
     name: 'Postgres Exporter'
     description: 'Inbound rule for Postgres Exporter'
     program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
-    localport: '{{ postgres_exporter_listen_port }}'
+    localport: '{{ postgres_exporter_web_listen_port }}'
     action: allow
     direction: in
     protocol: tcp
