@@ -14,8 +14,13 @@ jobs:
       matrix:
         include:
           - distro: 'debian-11'
+            scenario: 'default'
           - distro: 'rockylinux-8'
+            scenario: 'default'
+          - distro: 'ubuntu-20.04'
+            scenario: 'default'
           - distro: 'ubuntu-22.04'
+            scenario: 'tls-and-basic-auth'
 
     steps:
       - name: 'Checkout the codebase'
@@ -25,6 +30,7 @@ jobs:
         uses: gofrolist/molecule-action@v2
         with:
           molecule_command: test
+          molecule_args: --scenario-name ${{ matrix.scenario }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'

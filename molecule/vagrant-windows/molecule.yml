@@ -12,6 +12,8 @@ platforms:
   - name: instance
     box: 'jborean93/WindowsServer2019'
     interfaces:
+      - network_name: private_network
+        ip: 192.168.56.4
       - network_name: forwarded_port
         guest: 9187
         host: 9187
@@ -20,8 +22,8 @@ provisioner:
   inventory:
     host_vars:
       instance:
-        ansible_host: 127.0.0.1
-        ansible_port: 55986
+        ansible_host: 192.168.56.4
+        ansible_port: 5986
         ansible_user: vagrant
         ansible_password: vagrant
         ansible_connection: winrm
@@ -29,7 +31,5 @@ provisioner:
         ansible_winrm_transport: ntlm
         ansible_winrm_server_cert_validation: ignore
         ansible_become: false
-  playbooks:
-    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
 verifier:
   name: ansible
