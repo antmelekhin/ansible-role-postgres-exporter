@@ -1,12 +1,12 @@
 ---
 - name: 'Windows | Check if Postgres Exporter is installed'
   ansible.builtin.win_stat:
-    path: '{{ postgres_exporter_install_path }}/postgres_exporter'
+    path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
   register: _postgres_exporter_is_installed
 
 - name: 'Windows | Check current Postgres Exporter version'
   win_command:
-    cmd: '{{ postgres_exporter_install_path }}/postgres_exporter --version'
+    cmd: '"{{ postgres_exporter_install_path }}\postgres_exporter.exe" --version'
   failed_when: false
   changed_when: false
   register: _postgres_exporter_version_check

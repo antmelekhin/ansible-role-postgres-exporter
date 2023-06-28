@@ -9,7 +9,7 @@
 - name: 'Windows | Configure web config file for Postgres Exporter'
   win_template:
     src: 'web_config.yaml.j2'
-    dest: '{{ postgres_exporter_config_path }}/web_config.yaml'
+    dest: '{{ postgres_exporter_config_path }}\web_config.yaml'
   register: _postgres_exporter_web_config
   when:
     - postgres_exporter_tls_server_config | length or
