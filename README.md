@@ -31,16 +31,17 @@ Requirements
 Role Variables
 --------------
 
-- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.12.1`).
-- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-0.12.1.linux-amd64` or `postgres_exporter-0.12.0.windows-amd64`).
+- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.13.1`).
+- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-0.13.1.linux-amd64` or `postgres_exporter-0.12.0.windows-amd64`).
 - `postgres_exporter_archive_extension` Postgres Exporter archive extension (default: `tar.gz`)
-- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.12.1`).
+- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.13.1`).
 - `postgres_exporter_user` and `postgres_exporter_group` Unix username and group (default: `postgres`).
 - `postgres_exporter_install_path` Path to Postgres Exporter installation directory (default: `/usr/local/bin`).
 - `postgres_exporter_data_source_name` Accepts URI form and key=value form arguments. The URI may contain the username and password to connect with. (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
 - `postgres_exporter_web_listen_address` Address to listen on for web interface and telemetry (default: `0.0.0.0`).
 - `postgres_exporter_web_listen_port` The port to bind to (default: `9187`).
 - `postgres_exporter_web_telemetry_path` The path at which to serve metrics (default: `metrics`).
+- `postgres_exporter_collectors` List of collectors to use (default: `[]`).
 - `postgres_exporter_tls_server_config` Certificate and key files for server to use to authenticate to client.
 - `postgres_exporter_http_server_config` Enable HTTP/2 support. Note that HTTP/2 is only supported with TLS.
 - `postgres_exporter_basic_auth_users` Users and password for basic authentication. Passwords are automatically hashed with bcrypt.
