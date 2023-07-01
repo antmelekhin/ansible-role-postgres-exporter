@@ -41,6 +41,7 @@ Role Variables
 - `postgres_exporter_web_listen_address` Address to listen on for web interface and telemetry (default: `0.0.0.0`).
 - `postgres_exporter_web_listen_port` The port to bind to (default: `9187`).
 - `postgres_exporter_web_telemetry_path` The path at which to serve metrics (default: `metrics`).
+- `postgres_exporter_collectors` List of collectors to use (default: `[]`).
 - `postgres_exporter_tls_server_config` Certificate and key files for server to use to authenticate to client.
 - `postgres_exporter_http_server_config` Enable HTTP/2 support. Note that HTTP/2 is only supported with TLS.
 - `postgres_exporter_basic_auth_users` Users and password for basic authentication. Passwords are automatically hashed with bcrypt.

@@ -20,6 +20,7 @@ postgres_exporter_data_source_name: '{{ _postgres_exporter_data_source_name }}'
 postgres_exporter_web_listen_address: '0.0.0.0'
 postgres_exporter_web_listen_port: 9187
 postgres_exporter_web_telemetry_path: '/metrics'
+postgres_exporter_collectors: []
 postgres_exporter_disable_default_metrics: false
 postgres_exporter_disable_settings_metrics: false
 postgres_exporter_extend_query_path: ''

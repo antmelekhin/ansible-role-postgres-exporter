@@ -16,6 +16,9 @@ ExecStart={{ postgres_exporter_install_path }}/postgres_exporter \
 {% endif %}
     --web.listen-address {{ postgres_exporter_web_listen_address }}:{{ postgres_exporter_web_listen_port }} \
     --web.telemetry-path {{ postgres_exporter_web_telemetry_path }} \
+{% for collector in postgres_exporter_collectors %}
+    --{{ collector }} \
+{% endfor %}
 {% if postgres_exporter_disable_default_metrics | bool %}
     --disable-default-metrics \
 {% endif %}
