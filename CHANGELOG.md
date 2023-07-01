@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.1.3...v1.1.4) (2023-07-01)
+
+
+### Fixes
+
+* use startup script in windows task ([e915e9e](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/e915e9e8d77b171e93f54d63372be269ad513acf))
+
 ## [1.1.3](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.1.2...v1.1.3) (2023-07-01)
 
 
