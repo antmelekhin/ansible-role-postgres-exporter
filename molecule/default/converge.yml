@@ -17,10 +17,11 @@
     - name: 'Update APT cache'
       ansible.builtin.apt:
         update_cache: true
+        cache_valid_time: 600
       when: ansible_os_family == 'Debian'
 
     - name: 'Set database locale if using RedHat 8'
-      set_fact:
+      ansible.builtin.set_fact:
         locale: 'C.UTF-8'
       when:
         - ansible_os_family == 'RedHat' and
