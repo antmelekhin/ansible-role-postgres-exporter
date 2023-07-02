@@ -5,19 +5,19 @@
     name: 'DATA_SOURCE_NAME'
     value: '{{ postgres_exporter_data_source_name }}'
     state: present
-  notify: Windows | Restart Postgres Exporter scheduled task
+  notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Configure startup script for Postgres Exporter'
   win_template:
     src: 'Start-PostgresExporter.ps1.j2'
     dest: '{{ postgres_exporter_install_path }}\Start-PostgresExporter.ps1'
-  notify: Windows | Restart Postgres Exporter scheduled task
+  notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Configure web config file for Postgres Exporter'
   win_template:
     src: 'web_config.yaml.j2'
     dest: '{{ postgres_exporter_config_path }}\web_config.yaml'
-  notify: Windows | Restart Postgres Exporter scheduled task
+  notify: 'Windows | Restart Postgres Exporter scheduled task'
   when:
     - postgres_exporter_tls_server_config | length or
       postgres_exporter_http_server_config | length or
@@ -36,7 +36,7 @@
     username: 'SYSTEM'
     enabled: true
     state: present
-  notify: Windows | Restart Postgres Exporter scheduled task
+  notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
   win_firewall_rule:

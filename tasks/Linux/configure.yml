@@ -9,7 +9,7 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         mode: 0644
-      notify: Linux | Restart Postgres Exporter
+      notify: 'Linux | Restart Postgres Exporter'
 
     - name: 'Linux | Configure web config file for Postgres Exporter'
       ansible.builtin.template:
@@ -18,7 +18,7 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         mode: 0600
-      notify: Linux | Restart Postgres Exporter
+      notify: 'Linux | Restart Postgres Exporter'
       when:
         - postgres_exporter_tls_server_config | length or
           postgres_exporter_http_server_config | length or

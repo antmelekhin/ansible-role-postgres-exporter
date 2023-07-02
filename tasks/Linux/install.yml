@@ -42,6 +42,6 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         mode: 0755
-      notify: Linux | Restart Postgres Exporter
+      notify: 'Linux | Restart Postgres Exporter'
       when: not ansible_check_mode
       become: true
