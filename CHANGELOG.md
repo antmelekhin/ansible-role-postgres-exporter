@@ -1,5 +1,28 @@
 # Changelog
 
+## [1.2.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.1.4...v1.2.0) (2023-07-02)
+
+
+### Continuous Integration
+
+* update converge.yml ([6f2865b](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/6f2865b1aaa1967f46bdf3fcb060e6c31d627386))
+
+
+### Features
+
+* add selinux support ([9123905](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/9123905132fda4ec3199ec44226251ed30201cc6))
+
+
+### Fixes
+
+* **windows:** mv scheduled task restart from tasks to handlers ([97a5200](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/97a5200ff8e2959b80561b6b4f11d588de41d9fc))
+* **windows:** scheduled task restart when new version is installed ([1ebb94b](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/1ebb94bbeee7b46f0ebf8791a959d60b830aeaf0))
+
+
+### Styles
+
+* add quotes in notify name ([eca7d4a](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/eca7d4a05b2c1a5a6f42f5d46df8ccf5bf59cd4c))
+
 ## [1.1.4](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.1.3...v1.1.4) (2023-07-01)
 
 
