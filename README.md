@@ -6,7 +6,7 @@ An Ansible role for install, configure and update [Postgres Exporter](https://gi
 Requirements
 ------------
 
-- Supported version of Ansible: 2.9 and highter.
+- Supported version of Ansible: 2.12 and highter.
 - `gnu-tar` on Mac as deployer host (`brew install gnu-tar`).
 - `pywinrm` is a python library for connection Ansible to Windows hosts via [WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html).
 - `passlib` on a deployer host when using the basic authentication feature (`python3 -m pip install passlib[bcrypt]`).
