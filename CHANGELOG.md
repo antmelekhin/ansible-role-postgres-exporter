@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.2.2](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.1...v1.2.2) (2023-08-25)
+
+
+### Fixes
+
+* add fqcn for all modules ([5fd7a3b](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/5fd7a3b3512fb62dd89dcdc4d97577f759376e27))
+
+
+### Styles
+
+* mv when in block ([19933be](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/19933befd52ef0206547bedb5ed944c077ca9b70))
+
+
+### Tests
+
+* add tox ([2fec357](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/2fec357ffa52d7c187feb7b6f5f5c51457bd12c0))
+
 ## [1.2.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.0...v1.2.1) (2023-07-28)
 
 
