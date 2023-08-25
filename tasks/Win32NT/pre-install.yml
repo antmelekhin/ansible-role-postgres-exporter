@@ -1,6 +1,6 @@
 ---
 - name: 'Windows | Create Postgres Exporter directory'
-  win_file:
+  ansible.windows.win_file:
     path: '{{ postgres_exporter_path }}'
     state: directory
   loop:

@@ -1,11 +1,11 @@
 ---
 - name: 'Windows | Check if Postgres Exporter is installed'
-  ansible.builtin.win_stat:
+  ansible.windows.win_stat:
     path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
   register: _postgres_exporter_is_installed
 
 - name: 'Windows | Check current Postgres Exporter version'
-  win_command:
+  ansible.windows.win_command:
     cmd: '"{{ postgres_exporter_install_path }}\postgres_exporter.exe" --version'
   failed_when: false
   changed_when: false
@@ -36,7 +36,7 @@
       check_mode: false
 
     - name: 'Windows | Copy Postgres Exporter binary into place'
-      win_copy:
+      ansible.windows.win_copy:
         src: '/tmp/{{ _postgres_exporter_tmp_dir }}/postgres_exporter.exe'
         dest: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
       notify: 'Windows | Restart Postgres Exporter scheduled task'

@@ -42,7 +42,7 @@
         state: present
 
     - name: 'Linux | Allow Postgres Exporter port in SELinux'
-      seport:
+      community.general.seport:
         ports: '{{ postgres_exporter_web_listen_port }}'
         proto: tcp
         setype: ssh_port_t

@@ -1,6 +1,6 @@
 ---
 - name: 'Windows | Set an environment variable for Postgres Exporter'
-  win_environment:
+  ansible.windows.win_environment:
     level: machine
     name: 'DATA_SOURCE_NAME'
     value: '{{ postgres_exporter_data_source_name }}'
@@ -8,13 +8,13 @@
   notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Configure startup script for Postgres Exporter'
-  win_template:
+  ansible.windows.win_template:
     src: 'Start-PostgresExporter.ps1.j2'
     dest: '{{ postgres_exporter_install_path }}\Start-PostgresExporter.ps1'
   notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Configure web config file for Postgres Exporter'
-  win_template:
+  ansible.windows.win_template:
     src: 'web_config.yaml.j2'
     dest: '{{ postgres_exporter_config_path }}\web_config.yaml'
   notify: 'Windows | Restart Postgres Exporter scheduled task'
@@ -24,7 +24,7 @@
       postgres_exporter_basic_auth_users | length
 
 - name: 'Windows | Ensure scheduled task for Postgres Exporter is enabled at boot'
-  win_scheduled_task:
+  community.windows.win_scheduled_task:
     name: 'Postgres Exporter'
     description: 'Prometheus exporter for Postgres server metrics.'
     actions:
@@ -39,7 +39,7 @@
   notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
-  win_firewall_rule:
+  community.windows.win_firewall_rule:
     name: 'Postgres Exporter'
     description: 'Inbound rule for Postgres Exporter'
     program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'

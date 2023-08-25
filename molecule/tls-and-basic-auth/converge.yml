@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: 'Install tar for delegated to localhost tasks'
-      apk:
+      community.general.apk:
         name: tar
         update_cache: true
       when: ansible_os_family == 'Alpine'
@@ -25,7 +25,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: 'Set database locale if using RedHat 8'
-      set_fact:
+      ansible.builtin.set_fact:
         locale: 'C.UTF-8'
       when:
         - ansible_os_family == 'RedHat' and
