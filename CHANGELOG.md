@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.3](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.2...v1.2.3) (2023-09-26)
+
+
+### Fixes
+
+* **version:** postgres_exporter updated to `0.14.0` release ([#14](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/14)) ([1ffe4bf](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/1ffe4bf7e4d7a333377f9090805f91886f0f0735))
+
+
+### Tests
+
+* fix `cache_valide_time` in `tls-and-basic-auth` molecule scenario ([#15](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/15)) ([e972641](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/e972641645af9d52894b7453148fe7beab1fdb20))
+
 ## [1.2.2](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.1...v1.2.2) (2023-08-25)
 
 
