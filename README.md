@@ -31,10 +31,10 @@ Requirements
 Role Variables
 --------------
 
-- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.13.2`).
-- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-0.13.2.linux-amd64` or `postgres_exporter-0.12.0.windows-amd64`).
+- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.14.0`).
+- `postgres_exporter_archive_name` Postgres Exporter archive name (default: `postgres_exporter-0.14.0.linux-amd64` or `postgres_exporter-0.12.0.windows-amd64`).
 - `postgres_exporter_archive_extension` Postgres Exporter archive extension (default: `tar.gz`)
-- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.13.2`).
+- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.14.0`).
 - `postgres_exporter_user` and `postgres_exporter_group` Unix username and group (default: `postgres`).
 - `postgres_exporter_install_path` Path to Postgres Exporter installation directory (default: `/usr/local/bin`).
 - `postgres_exporter_data_source_name` Accepts URI form and key=value form arguments. The URI may contain the username and password to connect with. (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
