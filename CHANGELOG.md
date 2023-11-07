@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.4](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.3...v1.2.4) (2023-11-07)
+
+
+### Documentation
+
+* **README:** fixed `postgres_exporter_archive_name` variable describe. ([#16](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/16)) ([d00e4a9](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/d00e4a9218ee0dc45bb2a441c4b175a1b1214117))
+
+
+### Fixes
+
+* **version:** postgres_exporter updated to `0.15.0` release ([#18](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/18)) ([54d1420](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/54d142074ce5334894bbb73c51e1c286692d2704))
+
 ## [1.2.3](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.2...v1.2.3) (2023-09-26)
 
 
