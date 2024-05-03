@@ -1,9 +1,9 @@
 ---
 - name: 'Linux | Restart Postgres Exporter'
   ansible.builtin.systemd:
-    name: postgres_exporter
+    name: 'postgres_exporter'
     daemon_reload: true
-    state: restarted
+    state: 'restarted'
   become: true
 
 - name: 'Windows | Restart Postgres Exporter scheduled task'

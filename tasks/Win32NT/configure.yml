@@ -1,7 +1,7 @@
 ---
 - name: 'Windows | Set an environment variable for Postgres Exporter'
   ansible.windows.win_environment:
-    level: machine
+    level: 'machine'
     name: 'DATA_SOURCE_NAME'
     value: '{{ postgres_exporter_data_source_name }}'
     state: present
@@ -35,7 +35,7 @@
     execution_time_limit: 'PT0S'
     username: 'SYSTEM'
     enabled: true
-    state: present
+    state: 'present'
   notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
@@ -44,9 +44,9 @@
     description: 'Inbound rule for Postgres Exporter'
     program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
     localport: '{{ postgres_exporter_web_listen_port }}'
-    action: allow
-    direction: in
-    protocol: tcp
+    action: 'allow'
+    direction: 'in'
+    protocol: 'tcp'
     profiles: 'domain,private,public'
     enabled: true
-    state: present
+    state: 'present'

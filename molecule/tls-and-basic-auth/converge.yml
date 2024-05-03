@@ -4,7 +4,7 @@
   tasks:
     - name: 'Install tar for delegated to localhost tasks'
       community.general.apk:
-        name: tar
+        name: 'tar'
         update_cache: true
       when: ansible_os_family == 'Alpine'
 
@@ -16,7 +16,7 @@
       cert_file: '/usr/local/etc/ssl/postgres_exporter.cert'
       key_file: '/usr/local/etc/ssl/postgres_exporter.key'
     postgres_exporter_basic_auth_users:
-      newuser1: newpassword1
+      newuser1: 'newpassword1'
 
   pre_tasks:
     - name: 'Update APT cache'
@@ -35,9 +35,9 @@
     - name: 'Create certificate directories'
       ansible.builtin.file:
         path: '{{ postgres_exporter_tls_server_config.cert_file | dirname }}'
-        state: directory
-        owner: root
-        group: root
+        state: 'directory'
+        owner: 'root'
+        group: 'root'
         mode: 0755
 
     - name: 'Copy certificate and key'
@@ -58,7 +58,7 @@
       postgresql_users:
         - name: 'molecule'
           password: 'molecule'
-          role_attr_flags: SUPERUSER
+          role_attr_flags: 'SUPERUSER'
       postgresql_databases:
         - name: 'molecule'
           lc_collate: '{{ locale }}'
