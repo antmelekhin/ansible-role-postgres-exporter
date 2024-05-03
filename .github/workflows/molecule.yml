@@ -36,9 +36,9 @@ jobs:
         include:
           - distro: 'debian-12'
             scenario: 'default'
-          - distro: 'rockylinux-8'
+          - distro: 'rockylinux-9'
             scenario: 'default'
-          - distro: 'ubuntu-20.04'
+          - distro: 'ubuntu-22.04'
             scenario: 'default'
           - distro: 'ubuntu-22.04'
             scenario: 'tls-and-basic-auth'
