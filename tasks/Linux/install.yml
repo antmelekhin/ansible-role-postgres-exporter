@@ -2,22 +2,22 @@
 - name: 'Linux | Check if Postgres Exporter is installed'
   ansible.builtin.stat:
     path: '{{ postgres_exporter_install_path }}/postgres_exporter'
-  register: _postgres_exporter_is_installed
+  register: __postgres_exporter_is_installed
 
 - name: 'Linux | Check current Postgres Exporter version'
   ansible.builtin.command:
     cmd: '{{ postgres_exporter_install_path }}/postgres_exporter --version'
   failed_when: false
   changed_when: false
-  register: _postgres_exporter_version_check
+  register: __postgres_exporter_version_check
 
 - name: 'Linux | Download and unarchive Postgres Exporter'
   when:
-    - not _postgres_exporter_is_installed.stat.exists or
-      ( _postgres_exporter_version_check.stderr_lines | length > 0 and
-      postgres_exporter_version not in _postgres_exporter_version_check.stderr_lines[0].split(" ")[2] ) or
-      ( _postgres_exporter_version_check.stdout_lines | length > 0 and
-      postgres_exporter_version not in _postgres_exporter_version_check.stdout_lines[0].split(" ")[2] )
+    - not __postgres_exporter_is_installed.stat.exists or
+      ( __postgres_exporter_version_check.stderr_lines | length and
+      postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split(" ")[2] ) or
+      ( __postgres_exporter_version_check.stdout_lines | length and
+      postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split(" ")[2] )
   block:
     - name: 'Linux | Download Postgres Exporter binary to local folder'
       ansible.builtin.get_url:
