@@ -4,7 +4,7 @@
     level: 'machine'
     name: 'DATA_SOURCE_NAME'
     value: '{{ postgres_exporter_data_source_name }}'
-    state: present
+    state: 'present'
   notify: 'Windows | Restart Postgres Exporter scheduled task'
 
 - name: 'Windows | Configure startup script for Postgres Exporter'
