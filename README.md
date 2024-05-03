@@ -75,16 +75,16 @@ None.
 Example Playbook
 ----------------
 
-- Install and configure `Postgres Exporter`:
+Install and configure `Postgres Exporter`:
 
-  ```yaml
-  ---
-  - name: 'Setup Postgres Exporter'
-    hosts: all
+```yaml
+---
+- name: 'Setup Postgres Exporter'
+  hosts: all
 
-    roles:
-      - role: antmelekhin.postgres_exporter
-  ```
+  roles:
+    - role: antmelekhin.postgres_exporter
+```
 
 License
 -------
