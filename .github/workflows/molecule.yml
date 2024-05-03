@@ -36,7 +36,7 @@ jobs:
         include:
           - distro: 'debian-12'
             scenario: 'default'
-          - distro: 'rockylinux-9'
+          - distro: 'rockylinux-8'
             scenario: 'default'
           - distro: 'ubuntu-22.04'
             scenario: 'default'
