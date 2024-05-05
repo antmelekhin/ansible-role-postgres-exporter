@@ -1,7 +1,7 @@
 Postgres Exporter
 =================
 
-An Ansible role for install, configure and update [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
+An Ansible role to install, configure and update [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
 
 Requirements
 ------------
