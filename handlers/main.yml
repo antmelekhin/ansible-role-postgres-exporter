@@ -4,6 +4,7 @@
     name: 'postgres_exporter'
     daemon_reload: true
     state: 'restarted'
+  when: not ansible_check_mode
   become: true
 
 - name: 'Windows | Restart Postgres Exporter scheduled task'

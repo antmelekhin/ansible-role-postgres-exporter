@@ -16,6 +16,9 @@ platforms:
         host: 9187
 provisioner:
   name: ansible
+  ansible_args:
+    - --check
+    - --diff
   inventory:
     host_vars:
       instance:
