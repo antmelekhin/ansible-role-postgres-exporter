@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.2.5](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.4...v1.2.5) (2024-05-05)
+
+
+### Code Refactoring
+
+* minor changes ([#20](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/20)) ([7d7c88a](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/7d7c88a7df56b1b7c2d1e6f0bef5021a78078ea7))
+
+
+### Continuous Integration
+
+* update workflows and release rules ([#19](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/19)) ([fa15d59](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/fa15d595dcd01583eb16a166917cdb8de259fe72))
+
+
+### Styles
+
+* add newline to end of file ([4f1fb84](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/4f1fb84b6a7c4d7413ad112c9ab79eaf507e5b58))
+* trim trailing whitespace ([0a353c5](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/0a353c553aa7a595bca12e588a22cb06d08ba182))
+
+
+### Tests
+
+* add .tox as ignore ([267316a](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/267316ac503d82d69e4b9014bdb74f430097350a))
+* rm lint from molecule ([dd593fd](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/dd593fdeddbbebc035d8918896a6d1b014a71550))
+
 ## [1.2.4](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.3...v1.2.4) (2023-11-07)
 
 
