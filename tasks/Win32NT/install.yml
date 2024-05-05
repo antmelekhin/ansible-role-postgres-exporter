@@ -21,23 +21,23 @@
   block:
     - name: 'Windows | Download Postgres Exporter binary to local folder'
       ansible.builtin.get_url:
-        url: '{{ postgres_exporter_download_url }}/{{ _postgres_exporter_archive }}'
-        dest: '/tmp/{{ _postgres_exporter_archive }}'
+        url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
+        dest: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
         mode: 0644
       delegate_to: localhost
       check_mode: false
 
     - name: 'Windows | Unarchive Postgres Exporter binary'
       ansible.builtin.unarchive:
-        src: '/tmp/{{ _postgres_exporter_archive }}'
+        src: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
         dest: '/tmp'
-        creates: '/tmp/{{ _postgres_exporter_tmp_dir }}/postgres_exporter.exe'
+        creates: '/tmp/{{ postgres_exporter_archive_name }}/postgres_exporter.exe'
       delegate_to: localhost
       check_mode: false
 
     - name: 'Windows | Copy Postgres Exporter binary into place'
       ansible.windows.win_copy:
-        src: '/tmp/{{ _postgres_exporter_tmp_dir }}/postgres_exporter.exe'
+        src: '/tmp/{{ postgres_exporter_archive_name }}/postgres_exporter.exe'
         dest: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
       notify: 'Windows | Restart Postgres Exporter scheduled task'
       when: not ansible_check_mode
