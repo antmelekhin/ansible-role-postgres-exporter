@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.6](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.5...v1.2.6) (2024-05-07)
+
+
+### Fixes
+
+* fix selinux type for the specified port ([aa9c8f7](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/aa9c8f7d28dd3b71ec6b4bd734e5e5b1409dbfd7))
+
 ## [1.2.5](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.4...v1.2.5) (2024-05-05)
 
 
