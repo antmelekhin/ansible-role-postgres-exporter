@@ -7,5 +7,5 @@
   when: not ansible_check_mode
   become: true
 
-- name: 'Windows | Restart Postgres Exporter scheduled task'
+- name: 'Windows | Restart the Postgres Exporter scheduled task'
   ansible.windows.win_shell: schtasks /end /tn 'Postgres Exporter'; schtasks /run /tn 'Postgres Exporter'

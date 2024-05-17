@@ -1,5 +1,5 @@
 ---
-- name: 'Include OS-specific variables'
+- name: 'Include the Postgres Exporter OS-specific variables'
   ansible.builtin.include_vars: '{{ ansible_system }}.yml'
 
 - name: 'Include tasks to prepare to install Postgres Exporter'

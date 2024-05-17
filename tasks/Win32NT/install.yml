@@ -4,7 +4,7 @@
     path: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
   register: __postgres_exporter_is_installed
 
-- name: 'Windows | Check current Postgres Exporter version'
+- name: 'Windows | Check the current Postgres Exporter version'
   ansible.windows.win_command:
     cmd: '"{{ postgres_exporter_install_path }}\postgres_exporter.exe" --version'
   failed_when: false
@@ -19,7 +19,7 @@
       ( __postgres_exporter_version_check.stdout_lines | length and
       postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split(" ")[2] )
   block:
-    - name: 'Windows | Download Postgres Exporter binary to local folder'
+    - name: 'Windows | Download the Postgres Exporter binary to a local folder'
       ansible.builtin.get_url:
         url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
         dest: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
@@ -27,7 +27,7 @@
       delegate_to: localhost
       check_mode: false
 
-    - name: 'Windows | Unarchive Postgres Exporter binary'
+    - name: 'Windows | Unarchive the Postgres Exporter binary'
       ansible.builtin.unarchive:
         src: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
         dest: '/tmp'
@@ -35,9 +35,9 @@
       delegate_to: localhost
       check_mode: false
 
-    - name: 'Windows | Copy Postgres Exporter binary into place'
+    - name: 'Windows | Copy the Postgres Exporter binary into a place'
       ansible.windows.win_copy:
         src: '/tmp/{{ postgres_exporter_archive_name }}/postgres_exporter.exe'
         dest: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
-      notify: 'Windows | Restart Postgres Exporter scheduled task'
+      notify: 'Windows | Restart the Postgres Exporter scheduled task'
       when: not ansible_check_mode

@@ -3,12 +3,12 @@
   when: postgres_exporter_user != 'postgres'
   become: true
   block:
-    - name: 'Linux | Create Postgres Exporter group'
+    - name: 'Linux | Create a Postgres Exporter group'
       ansible.builtin.group:
         name: '{{ postgres_exporter_group }}'
         system: true
 
-    - name: 'Linux | Create Postgres Exporter user'
+    - name: 'Linux | Create a Postgres Exporter user'
       ansible.builtin.user:
         name: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'

@@ -1,29 +1,29 @@
 ---
-- name: 'Windows | Set an environment variable for Postgres Exporter'
+- name: 'Windows | Set an environment variable for the Postgres Exporter'
   ansible.windows.win_environment:
     level: 'machine'
     name: 'DATA_SOURCE_NAME'
     value: '{{ postgres_exporter_data_source_name }}'
     state: 'present'
-  notify: 'Windows | Restart Postgres Exporter scheduled task'
+  notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Configure startup script for Postgres Exporter'
+- name: 'Windows | Configure the startup script for the Postgres Exporter'
   ansible.windows.win_template:
     src: 'Start-PostgresExporter.ps1.j2'
     dest: '{{ postgres_exporter_install_path }}\Start-PostgresExporter.ps1'
-  notify: 'Windows | Restart Postgres Exporter scheduled task'
+  notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Configure web config file for Postgres Exporter'
+- name: 'Windows | Configure the web configuration file for the Postgres Exporter'
   ansible.windows.win_template:
     src: 'web_config.yaml.j2'
     dest: '{{ postgres_exporter_config_path }}\web_config.yaml'
-  notify: 'Windows | Restart Postgres Exporter scheduled task'
+  notify: 'Windows | Restart the Postgres Exporter scheduled task'
   when:
     - postgres_exporter_tls_server_config | length or
       postgres_exporter_http_server_config | length or
       postgres_exporter_basic_auth_users | length
 
-- name: 'Windows | Ensure scheduled task for Postgres Exporter is enabled at boot'
+- name: 'Windows | Ensure the scheduled task for the Postgres Exporter is enabled at boot'
   community.windows.win_scheduled_task:
     name: 'Postgres Exporter'
     description: 'Prometheus exporter for Postgres server metrics.'
@@ -36,9 +36,9 @@
     username: 'SYSTEM'
     enabled: true
     state: 'present'
-  notify: 'Windows | Restart Postgres Exporter scheduled task'
+  notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Ensure firewall rule for Postgres Exporter is allow'
+- name: 'Windows | Ensure the firewall rule for the Postgres Exporter is allowed'
   community.windows.win_firewall_rule:
     name: 'Postgres Exporter'
     description: 'Inbound rule for Postgres Exporter'

@@ -1,8 +1,8 @@
 ---
-- name: 'Configure and start Postgres Exporter'
+- name: 'Linux | Configure and start Postgres Exporter'
   become: true
   block:
-    - name: 'Linux | Configure SystemD unit for Postgres Exporter'
+    - name: 'Linux | Create a Postgres Exporter systemd service'
       ansible.builtin.template:
         src: 'postgres_exporter.service.j2'
         dest: '/etc/systemd/system/postgres_exporter.service'
@@ -11,7 +11,7 @@
         mode: 0644
       notify: 'Linux | Restart Postgres Exporter'
 
-    - name: 'Linux | Configure web config file for Postgres Exporter'
+    - name: 'Linux | Configure the web configuration file for the Postgres Exporter'
       ansible.builtin.template:
         src: 'web_config.yaml.j2'
         dest: '{{ postgres_exporter_config_path }}/web_config.yaml'
@@ -24,7 +24,7 @@
           postgres_exporter_http_server_config | length or
           postgres_exporter_basic_auth_users | length
 
-    - name: 'Linux | Ensure Postgres Exporter is running and enabled at boot'
+    - name: 'Linux | Ensure the Postgres Exporter is running and enabled at boot'
       ansible.builtin.systemd:
         name: 'postgres_exporter'
         state: 'started'
