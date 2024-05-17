@@ -1,7 +1,7 @@
 Postgres Exporter
 =================
 
-An Ansible role to install, configure and update [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
+An Ansible role to install, configure and update the [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter).
 
 Requirements
 ------------
@@ -31,7 +31,9 @@ Requirements
 Role Variables
 --------------
 
-- `postgres_exporter_version` The specific version of Postgres Exporter to download (default: `0.15.0`).
+Variables used to install the Postgres Exporter:
+
+- `postgres_exporter_version` The version of Postgres Exporter to download (default: `0.15.0`).
 - `postgres_exporter_archive_name` Postgres Exporter archive name.
 
   Defaults:
@@ -39,9 +41,12 @@ Role Variables
   - `postgres_exporter-0.15.0.windows-amd64` (Windows)
 
 - `postgres_exporter_archive_extension` Postgres Exporter archive extension (default: `tar.gz`)
-- `postgres_exporter_download_url` URL to download an archive with Postgres Exporter (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.15.0`).
+- `postgres_exporter_download_url` URL to download the Postgres Exporter archive (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.15.0`).
+
+Variables used to configure the Postgres Exporter:
+
 - `postgres_exporter_user` and `postgres_exporter_group` Unix user and group that will be created (default: `postgres`).
-- `postgres_exporter_install_path` Path to Postgres Exporter installation directory (default: `/usr/local/bin`).
+- `postgres_exporter_install_path` The Postgres Exporter installation directory (default: `/usr/local/bin`).
 - `postgres_exporter_data_source_name` Accepts URI form and key=value form arguments. The URI may contain the username and password to connect with. (default: `user=postgres host=/var/run/postgresql/ sslmode=disable`).
 - `postgres_exporter_web_listen_address` Address to listen on for web interface and telemetry (default: `0.0.0.0`).
 - `postgres_exporter_web_listen_port` The port to bind to (default: `9187`).
@@ -75,7 +80,7 @@ None.
 Example Playbook
 ----------------
 
-Install and configure `Postgres Exporter`:
+Install and configure the Postgres Exporter:
 
 ```yaml
 ---
