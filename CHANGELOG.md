@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.7](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.6...v1.2.7) (2024-05-17)
+
+
+### Documentation
+
+* **README:** update variables documentation ([5c614dc](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/5c614dc972eb7e06360586370f84ac3a1d8d2d10))
+
+
+### Styles
+
+* rename tasks ([c4ff726](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/c4ff726e77b9f610638058304dc01855fd42bbc7))
+
 ## [1.2.6](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.5...v1.2.6) (2024-05-07)
 
 
