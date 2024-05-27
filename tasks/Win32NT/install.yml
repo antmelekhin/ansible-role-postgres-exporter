@@ -19,7 +19,7 @@
       ( __postgres_exporter_version_check.stdout_lines | length and
       postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split()[2] )
   block:
-    - name: 'Windows | Download the Postgres Exporter binary to a local folder'
+    - name: 'Windows | Download the Postgres Exporter archive to a local folder'
       ansible.builtin.get_url:
         url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
         dest: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
