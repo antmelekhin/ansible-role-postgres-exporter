@@ -1,5 +1,5 @@
 ---
-- name: 'Prepare to install Postgres Exporter'
+- name: 'Prepare to install the Postgres Exporter'
   when: postgres_exporter_user != 'postgres'
   become: true
   block:

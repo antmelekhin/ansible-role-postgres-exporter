@@ -11,7 +11,7 @@
   changed_when: false
   register: __postgres_exporter_version_check
 
-- name: 'Windows | Download and unarchive Postgres Exporter'
+- name: 'Windows | Download and unarchive the Postgres Exporter'
   when:
     - not __postgres_exporter_is_installed.stat.exists or
       ( __postgres_exporter_version_check.stderr_lines | length and

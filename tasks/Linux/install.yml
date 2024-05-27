@@ -11,7 +11,7 @@
   changed_when: false
   register: __postgres_exporter_version_check
 
-- name: 'Linux | Download and unarchive Postgres Exporter'
+- name: 'Linux | Download and unarchive the Postgres Exporter'
   when:
     - not __postgres_exporter_is_installed.stat.exists or
       ( __postgres_exporter_version_check.stderr_lines | length and
@@ -42,6 +42,6 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         mode: 0755
-      notify: 'Linux | Restart Postgres Exporter'
+      notify: 'Linux | Restart the Postgres Exporter'
       when: not ansible_check_mode
       become: true
