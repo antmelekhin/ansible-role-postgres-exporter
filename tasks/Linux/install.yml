@@ -15,9 +15,9 @@
   when:
     - not __postgres_exporter_is_installed.stat.exists or
       ( __postgres_exporter_version_check.stderr_lines | length and
-      postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split(" ")[2] ) or
+      postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split()[2] ) or
       ( __postgres_exporter_version_check.stdout_lines | length and
-      postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split(" ")[2] )
+      postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split()[2] )
   block:
     - name: 'Linux | Download the Postgres Exporter binary to a local folder'
       ansible.builtin.get_url:
