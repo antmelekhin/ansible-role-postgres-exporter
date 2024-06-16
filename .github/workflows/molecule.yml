@@ -45,6 +45,8 @@ jobs:
             scenario: 'default'
           - distro: 'ubuntu-22.04'
             scenario: 'tls-and-basic-auth'
+          - distro: 'ubuntu-22.04'
+            scenario: 'integration-test'
 
     steps:
       - name: 'Checkout the codebase'
