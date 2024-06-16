@@ -6,7 +6,7 @@ postgres_exporter_archive_extension: 'tar.gz'
 postgres_exporter_download_url: 'https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}'
 
 # The Postgres Exporter user and group
-postgres_exporter_user: 'postgres'
+postgres_exporter_user: 'postgres_exporter'
 postgres_exporter_group: '{{ postgres_exporter_user }}'
 
 # The Postgres Exporter directories
