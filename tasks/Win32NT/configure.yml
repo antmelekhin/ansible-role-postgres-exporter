@@ -38,7 +38,7 @@
     state: 'present'
   notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Ensure the firewall rule for the Postgres Exporter is allowed'
+- name: 'Windows | Allow the Postgres Exporter port in the Windows Firewall'
   community.windows.win_firewall_rule:
     name: 'Postgres Exporter'
     description: 'Inbound rule for Postgres Exporter'
