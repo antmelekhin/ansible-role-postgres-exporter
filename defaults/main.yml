@@ -2,8 +2,8 @@
 # See available releases: https://github.com/prometheus-community/postgres_exporter/releases
 postgres_exporter_version: '0.15.0'
 postgres_exporter_archive_name: 'postgres_exporter-{{ postgres_exporter_version }}.{{ _postgres_exporter_os }}-{{ _postgres_exporter_architecture }}'
-postgres_exporter_archive_extension: 'tar.gz'
 postgres_exporter_download_url: 'https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}'
+postgres_exporter_download_path: '/tmp'
 
 # The Postgres Exporter user and group
 postgres_exporter_user: 'postgres_exporter'
