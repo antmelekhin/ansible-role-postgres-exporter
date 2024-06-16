@@ -15,6 +15,9 @@ postgres_exporter_config_path: '{{ _postgres_exporter_config_path }}'
 
 # The Postgres Exporter connection settings
 postgres_exporter_data_source_name: '{{ _postgres_exporter_data_source_name }}'
+postgres_exporter_data_source_uri: ''
+postgres_exporter_data_source_user: ''
+postgres_exporter_data_source_pass: ''
 
 # See available settings flags: https://github.com/prometheus-community/postgres_exporter#flags
 postgres_exporter_web_listen_address: '0.0.0.0'

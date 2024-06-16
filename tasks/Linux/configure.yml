@@ -24,6 +24,26 @@
           postgres_exporter_http_server_config | length or
           postgres_exporter_basic_auth_users | length
 
+    - name: 'Linux | Copy the PostgreSQL connection URI for the Postgres Exporter'
+      ansible.builtin.copy:
+        content: '{{ postgres_exporter_data_source.content }}'
+        dest: '{{ postgres_exporter_data_source.dest }}'
+        owner: '{{ postgres_exporter_user }}'
+        group: '{{ postgres_exporter_group }}'
+        mode: 0640
+      loop:
+        - content: '{{ postgres_exporter_data_source_uri }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_uri'
+        - content: '{{ postgres_exporter_data_source_user }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_user'
+        - content: '{{ postgres_exporter_data_source_pass }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_pass'
+      loop_control:
+        loop_var: postgres_exporter_data_source
+      no_log: true
+      notify: 'Linux | Restart the Postgres Exporter'
+      when: postgres_exporter_data_source_uri | length
+
     - name: 'Linux | Ensure the Postgres Exporter is running and enabled at boot'
       ansible.builtin.systemd:
         name: 'postgres_exporter'
