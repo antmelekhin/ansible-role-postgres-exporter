@@ -11,6 +11,6 @@ _postgres_exporter_architecture_map:
 _postgres_exporter_architecture: '{{ _postgres_exporter_architecture_map[ansible_architecture] | default(ansible_architecture) }}'
 
 _postgres_exporter_install_path: '/usr/local/bin'
-_postgres_exporter_config_path: '/usr/local/etc'
+_postgres_exporter_config_path: '/etc/postgres_exporter'
 
 _postgres_exporter_data_source_name: 'user=postgres host=/var/run/postgresql/ sslmode=disable'
