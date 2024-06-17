@@ -1,28 +1,48 @@
 ---
-- name: 'Linux | Configure and start Postgres Exporter'
+- name: 'Linux | Configure and start the Postgres Exporter'
   become: true
   block:
-    - name: 'Linux | Create a Postgres Exporter systemd service'
+    - name: 'Linux | Copy the Postgres Exporter systemd service'
       ansible.builtin.template:
         src: 'postgres_exporter.service.j2'
         dest: '/etc/systemd/system/postgres_exporter.service'
-        owner: '{{ postgres_exporter_user }}'
-        group: '{{ postgres_exporter_group }}'
+        owner: 'root'
+        group: 'root'
         mode: 0644
-      notify: 'Linux | Restart Postgres Exporter'
+      notify: 'Linux | Restart the Postgres Exporter'
 
-    - name: 'Linux | Configure the web configuration file for the Postgres Exporter'
+    - name: 'Linux | Copy the Postgres Exporter web configuration file'
       ansible.builtin.template:
         src: 'web_config.yaml.j2'
         dest: '{{ postgres_exporter_config_path }}/web_config.yaml'
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
-        mode: 0600
-      notify: 'Linux | Restart Postgres Exporter'
+        mode: 0640
+      notify: 'Linux | Restart the Postgres Exporter'
       when:
         - postgres_exporter_tls_server_config | length or
           postgres_exporter_http_server_config | length or
           postgres_exporter_basic_auth_users | length
+
+    - name: 'Linux | Copy the PostgreSQL connection URI for the Postgres Exporter'
+      ansible.builtin.copy:
+        content: '{{ postgres_exporter_data_source.content }}'
+        dest: '{{ postgres_exporter_data_source.dest }}'
+        owner: '{{ postgres_exporter_user }}'
+        group: '{{ postgres_exporter_group }}'
+        mode: 0640
+      loop:
+        - content: '{{ postgres_exporter_data_source_uri }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_uri'
+        - content: '{{ postgres_exporter_data_source_user }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_user'
+        - content: '{{ postgres_exporter_data_source_pass }}'
+          dest: '{{ postgres_exporter_config_path }}/postgresql_pass'
+      loop_control:
+        loop_var: postgres_exporter_data_source
+      no_log: true
+      notify: 'Linux | Restart the Postgres Exporter'
+      when: postgres_exporter_data_source_uri | length
 
     - name: 'Linux | Ensure the Postgres Exporter is running and enabled at boot'
       ansible.builtin.systemd:
@@ -35,14 +55,14 @@
   when: ansible_selinux.status == 'enabled'
   become: true
   block:
-    - name: 'Linux | Install SELinux required packages'
+    - name: 'Linux | Install the required SELinux packages'
       ansible.builtin.package:
         name: "{{ ['policycoreutils-python']
           if ansible_python_version is version('3', '<')
           else ['policycoreutils-python-utils'] }}"
         state: 'present'
 
-    - name: 'Linux | Allow Postgres Exporter port in SELinux'
+    - name: 'Linux | Allow the Postgres Exporter port in SELinux'
       community.general.seport:
         ports: '{{ postgres_exporter_web_listen_port }}'
         proto: 'tcp'

@@ -1,13 +1,24 @@
 ---
 - name: 'Verify'
-  hosts: localhost
+  hosts: all
   gather_facts: false
 
   tasks:
-    - name: 'Verify postgres_exporter is responding to requests'
+    - name: 'Verify the Postgres Exporter is responding to requests'
       ansible.builtin.uri:
         url: 'http://{{ ansible_host }}:9187/metrics'
-      register: __result
-      until: __result.status == 200
+      register: __postgres_exporter_response
+      until: __postgres_exporter_response.status == 200
       retries: 120
       delay: 5
+
+    - name: 'Check the current Postgres Exporter version'
+      ansible.windows.win_command:
+        cmd: '"C:\Program Files\postgres_exporter\postgres_exporter.exe" --version'
+      failed_when: false
+      changed_when: false
+      register: __postgres_exporter_version_check
+
+    - name: 'The Postgres Exporter version output'
+      ansible.builtin.debug:
+        var: __postgres_exporter_version_check.stderr_lines[0].split()[2]

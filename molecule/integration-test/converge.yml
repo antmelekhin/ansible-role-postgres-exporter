@@ -1,0 +1,8 @@
+---
+- name: 'Converge'
+  hosts: all
+  roles:
+    - role: antmelekhin.postgres_exporter
+      postgres_exporter_data_source_uri: 'localhost:5432/molecule?sslmode=disable'
+      postgres_exporter_data_source_user: 'exporter'
+      postgres_exporter_data_source_pass: 'Passw0rd'

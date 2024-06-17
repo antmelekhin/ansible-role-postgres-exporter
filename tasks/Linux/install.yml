@@ -11,37 +11,37 @@
   changed_when: false
   register: __postgres_exporter_version_check
 
-- name: 'Linux | Download and unarchive Postgres Exporter'
+- name: 'Linux | Download and unarchive the Postgres Exporter'
   when:
     - not __postgres_exporter_is_installed.stat.exists or
       ( __postgres_exporter_version_check.stderr_lines | length and
-      postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split(" ")[2] ) or
+      postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split()[2] ) or
       ( __postgres_exporter_version_check.stdout_lines | length and
-      postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split(" ")[2] )
+      postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split()[2] )
   block:
-    - name: 'Linux | Download the Postgres Exporter binary to a local folder'
+    - name: 'Linux | Download the Postgres Exporter archive to a local folder'
       ansible.builtin.get_url:
-        url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
-        dest: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
+        url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.tar.gz'
+        dest: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}.tar.gz'
         mode: 0644
       delegate_to: localhost
       check_mode: false
 
     - name: 'Linux | Unarchive the Postgres Exporter binary'
       ansible.builtin.unarchive:
-        src: '/tmp/{{ postgres_exporter_archive_name }}.{{ postgres_exporter_archive_extension }}'
-        dest: '/tmp'
-        creates: '/tmp/{{ postgres_exporter_archive_name }}/postgres_exporter'
+        src: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}.tar.gz'
+        dest: '{{ postgres_exporter_download_path }}'
+        creates: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}/postgres_exporter'
       delegate_to: localhost
       check_mode: false
 
     - name: 'Linux | Copy the Postgres Exporter binary into a place'
       ansible.builtin.copy:
-        src: '/tmp/{{ postgres_exporter_archive_name }}/postgres_exporter'
+        src: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}/postgres_exporter'
         dest: '{{ postgres_exporter_install_path }}/postgres_exporter'
-        owner: '{{ postgres_exporter_user }}'
-        group: '{{ postgres_exporter_group }}'
+        owner: 'root'
+        group: 'root'
         mode: 0755
-      notify: 'Linux | Restart Postgres Exporter'
+      notify: 'Linux | Restart the Postgres Exporter'
       when: not ansible_check_mode
       become: true

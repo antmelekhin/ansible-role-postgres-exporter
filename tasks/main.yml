@@ -1,12 +1,12 @@
 ---
-- name: 'Include the Postgres Exporter OS-specific variables'
+- name: 'Load the Postgres Exporter OS-specific variables'
   ansible.builtin.include_vars: '{{ ansible_system }}.yml'
 
-- name: 'Include tasks to prepare to install Postgres Exporter'
+- name: 'Prepare for installing the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/pre-install.yml'
 
-- name: 'Include tasks to install Postgres Exporter'
+- name: 'Install the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/install.yml'
 
-- name: 'Include tasks to configure Postgres Exporter'
+- name: 'Configure the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/configure.yml'

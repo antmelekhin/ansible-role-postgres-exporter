@@ -7,13 +7,13 @@
     state: 'present'
   notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Configure the startup script for the Postgres Exporter'
+- name: 'Windows | Copy the startup script for the Postgres Exporter'
   ansible.windows.win_template:
     src: 'Start-PostgresExporter.ps1.j2'
     dest: '{{ postgres_exporter_install_path }}\Start-PostgresExporter.ps1'
   notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Configure the web configuration file for the Postgres Exporter'
+- name: 'Windows | Copy the Postgres Exporter web configuration file'
   ansible.windows.win_template:
     src: 'web_config.yaml.j2'
     dest: '{{ postgres_exporter_config_path }}\web_config.yaml'
@@ -38,7 +38,7 @@
     state: 'present'
   notify: 'Windows | Restart the Postgres Exporter scheduled task'
 
-- name: 'Windows | Ensure the firewall rule for the Postgres Exporter is allowed'
+- name: 'Windows | Allow the Postgres Exporter port in the Windows Firewall'
   community.windows.win_firewall_rule:
     name: 'Postgres Exporter'
     description: 'Inbound rule for Postgres Exporter'
