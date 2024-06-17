@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.7...v1.3.0) (2024-06-17)
+
+
+### Improvements
+
+* update variables and common role style, add molecule integration-test ([#21](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/21)) ([4ddf7e0](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/4ddf7e07ccbf207bd3083f7c862b67db9a42fb9d))
+
 ## [1.2.7](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.2.6...v1.2.7) (2024-05-17)
 
 
