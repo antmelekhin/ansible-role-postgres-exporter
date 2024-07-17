@@ -31,10 +31,11 @@ Role Variables
 --------------
 
 - `postgres_exporter_version` The version of Postgres Exporter to install (default: `0.15.0`).
-- `postgres_exporter_archive_name` The Postgres Exporter archive name. Defaults:
+- `postgres_exporter_archive_name` The Postgres Exporter archive name without an extension. Defaults:
   - `postgres_exporter-0.15.0.linux-amd64` (Linux)
   - `postgres_exporter-0.15.0.windows-amd64` (Windows)
 - `postgres_exporter_download_url` The Postgres Exporter archive download URL (default: `https://github.com/prometheus-community/postgres_exporter/releases/download/v0.15.0`).
+- `postgres_exporter_checksum_url` The Postgres Exporter checksum file URL (default: `{{ postgres_exporter_download_url }}/sha256sums.txt`).
 - `postgres_exporter_download_path` Local path to download and extract the archive (default: `/tmp`).
 - `postgres_exporter_user` and `postgres_exporter_group` System user and group that will be created (default: `postgres_exporter`).
 - `postgres_exporter_install_path` The Postgres Exporter installation directory. Defaults:
