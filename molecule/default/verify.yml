@@ -30,4 +30,4 @@
 
     - name: 'The Postgres Exporter version output'
       ansible.builtin.debug:
-        var: __postgres_exporter_version_check.stderr_lines[0].split()[2]
+        msg: 'The current Postgres Exporter version is {{ __postgres_exporter_version_check.stderr_lines[0].split()[2] }}'

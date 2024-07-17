@@ -7,6 +7,7 @@
     - name: 'Verify the Postgres Exporter is responding to requests'
       ansible.builtin.uri:
         url: 'http://{{ ansible_host }}:9187/metrics'
+      delegate_to: localhost
       register: __postgres_exporter_response
       until: __postgres_exporter_response.status == 200
       retries: 120
@@ -21,4 +22,4 @@
 
     - name: 'The Postgres Exporter version output'
       ansible.builtin.debug:
-        var: __postgres_exporter_version_check.stderr_lines[0].split()[2]
+        msg: 'The current Postgres Exporter version is {{ __postgres_exporter_version_check.stderr_lines[0].split()[2] }}'
