@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.3.0...v1.4.0) (2024-08-06)
+
+
+### Fixes
+
+* add `postgres_exporter_checksum_url` variable ([5f67178](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/5f67178f0f80ea2dea6581c775611ffe12425df4))
+
+
+### Improvements
+
+* merge OS-specific variables into the `vars/main.yml` file ([#22](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/22)) ([4503ec4](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/4503ec48b367edb980cb908f368ab201351b04d8))
+
+
+### Tests
+
+* clean version output in the default scenario ([aa4d510](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/aa4d510ed763d1aad39e08bf205e99ba755b84c7))
+
 ## [1.3.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.3.0...v1.3.1) (2024-07-17)
 
 
