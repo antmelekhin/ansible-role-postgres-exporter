@@ -1,7 +1,7 @@
 ---
 # See available releases: https://github.com/prometheus-community/postgres_exporter/releases
 postgres_exporter_version: '0.15.0'
-postgres_exporter_archive_name: 'postgres_exporter-{{ postgres_exporter_version }}.{{ _postgres_exporter_os }}-{{ _postgres_exporter_architecture }}'
+postgres_exporter_archive_name: 'postgres_exporter-{{ postgres_exporter_version }}.{{ __postgres_exporter_os }}-{{ __postgres_exporter_architecture }}'
 postgres_exporter_download_url: 'https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}'
 postgres_exporter_checksum_url: '{{ postgres_exporter_download_url }}/sha256sums.txt'
 postgres_exporter_download_path: '/tmp'
@@ -11,11 +11,11 @@ postgres_exporter_user: 'postgres_exporter'
 postgres_exporter_group: '{{ postgres_exporter_user }}'
 
 # The Postgres Exporter directories
-postgres_exporter_install_path: '{{ _postgres_exporter_install_path }}'
-postgres_exporter_config_path: '{{ _postgres_exporter_config_path }}'
+postgres_exporter_install_path: '{{ __postgres_exporter_install_path }}'
+postgres_exporter_config_path: '{{ __postgres_exporter_config_path }}'
 
 # The Postgres Exporter connection settings
-postgres_exporter_data_source_name: '{{ _postgres_exporter_data_source_name }}'
+postgres_exporter_data_source_name: '{{ __postgres_exporter_data_source_name }}'
 postgres_exporter_data_source_uri: ''
 postgres_exporter_data_source_user: ''
 postgres_exporter_data_source_pass: ''
