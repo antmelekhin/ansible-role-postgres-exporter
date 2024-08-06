@@ -1,0 +1,37 @@
+---
+__postgres_exporter_os_dict:
+  Linux: 'linux'
+  Win32NT: 'windows'
+
+__postgres_exporter_os: '{{ __postgres_exporter_os_dict[ansible_system] }}'
+
+__postgres_exporter_architecture_dict:
+  Linux:
+    i386: '386'
+    x86_64: 'amd64'
+    aarch64: 'arm64'
+    armv7l: 'armv7'
+    armv6l: 'armv6'
+  Win32NT:
+    32-bit: '386'
+    64-bit: 'amd64'
+
+__postgres_exporter_architecture: '{{ __postgres_exporter_architecture_dict[ansible_system][ansible_architecture] | default(ansible_architecture) }}'
+
+__postgres_exporter_install_path_dict:
+  Linux: '/usr/local/bin'
+  Win32NT: 'C:\Program Files\postgres_exporter'
+
+__postgres_exporter_install_path: '{{ __postgres_exporter_install_path_dict[ansible_system] }}'
+
+__postgres_exporter_config_path_dict:
+  Linux: '/etc/postgres_exporter'
+  Win32NT: 'C:\Program Files\postgres_exporter'
+
+__postgres_exporter_config_path: '{{ __postgres_exporter_config_path_dict[ansible_system] }}'
+
+__postgres_exporter_data_source_name_dict:
+  Linux: 'user=postgres host=/var/run/postgresql/ sslmode=disable'
+  Win32NT: 'user=postgres host=127.0.0.1 sslmode=disable'
+
+__postgres_exporter_data_source_name: '{{ __postgres_exporter_data_source_name_dict[ansible_system] }}'
