@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.4.0...v1.5.0) (2024-08-09)
+
+
+### Features
+
+* add `meta/argument_specs.yml` file ([#23](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/23)) ([f52dc3c](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/f52dc3c29b1152c12fa237b9aab0edfe830799bb))
+
 ## [1.4.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.3.0...v1.4.0) (2024-08-06)
 
 
