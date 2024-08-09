@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.5.0...v1.5.1) (2024-08-09)
+
+
+### Documentation
+
+* **README:** fix links ([a2c0471](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/a2c0471254b78e6915542c975a7a9c21ccb2a3a2))
+
 ## [1.5.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.4.0...v1.5.0) (2024-08-09)
 
 
