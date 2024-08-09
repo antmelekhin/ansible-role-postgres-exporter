@@ -78,6 +78,7 @@ argument_specs:
         type: 'list'
         elements: 'str'
         description: 'A list of collectors to use.'
+        default: []
       postgres_exporter_disable_default_metrics:
         type: 'bool'
         description: 'Use only metrics supplied from queries.yaml via C(postgres_exporter_extend_query_path).'
@@ -110,8 +111,7 @@ argument_specs:
         description: 'Certificate and key files for server to use to authenticate to client'
       postgres_exporter_http_server_config:
         type: 'dict'
-        description:
-          - 'Enable HTTP/2 support. Note that HTTP/2 is only supported with TLS.'
+        description: 'Enable HTTP/2 support. Note that HTTP/2 is only supported with TLS.'
       postgres_exporter_basic_auth_users:
         type: 'dict'
         description: 'Users and password for basic authentication. Passwords are automatically hashed with bcrypt.'
