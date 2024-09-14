@@ -44,9 +44,10 @@
     description: 'Inbound rule for Postgres Exporter'
     program: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
     localport: '{{ postgres_exporter_web_listen_port }}'
+    remoteip: '{{ postgres_exporter_win_firewall_rule_remoteip }}'
     action: 'allow'
     direction: 'in'
     protocol: 'tcp'
-    profiles: 'domain,private,public'
+    profiles: '{{ postgres_exporter_win_firewall_rule_profiles }}'
     enabled: true
-    state: 'present'
+    state: '{{ postgres_exporter_win_firewall_rule_state }}'

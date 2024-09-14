@@ -4,8 +4,7 @@ argument_specs:
     short_description: 'Postgres Exporter'
     description:
       - 'An Ansible role to install, configure and update the L(Postgres Exporter,https://github.com/prometheus-community/postgres_exporter).'
-    author:
-      - 'Melekhin Anton'
+    author: 'Melekhin Anton'
     options:
       postgres_exporter_version:
         type: 'str'
@@ -115,3 +114,18 @@ argument_specs:
       postgres_exporter_basic_auth_users:
         type: 'dict'
         description: 'Users and password for basic authentication. Passwords are automatically hashed with bcrypt.'
+      postgres_exporter_win_firewall_rule_profiles:
+        type: 'str'
+        description: 'The profile this rule applies to.'
+        default: 'domain,private,public'
+      postgres_exporter_win_firewall_rule_remoteip:
+        type: 'str'
+        description: 'The remote ip address/range this rule applies to.'
+        default: 'any'
+      postgres_exporter_win_firewall_rule_state:
+        type: 'str'
+        description: 'Should this rule be added or removed.'
+        choices:
+          - 'present'
+          - 'absent'
+        default: 'present'
