@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.5.1...v1.6.0) (2024-09-14)
+
+
+### Features
+
+* add windows firewall settings ([06876b1](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/06876b1d62641337186aff69b36dadd8f536ebc0))
+
 ## [1.5.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.5.0...v1.5.1) (2024-08-09)
 
 
