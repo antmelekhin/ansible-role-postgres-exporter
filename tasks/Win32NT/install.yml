@@ -38,7 +38,7 @@
       delegate_to: localhost
       check_mode: false
 
-    - name: 'Windows | Copy the Postgres Exporter binary into a place'
+    - name: 'Windows | Copy the Postgres Exporter binary to a target host'
       ansible.windows.win_copy:
         src: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}/postgres_exporter.exe'
         dest: '{{ postgres_exporter_install_path }}\postgres_exporter.exe'
