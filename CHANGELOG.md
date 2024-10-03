@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.0...v1.6.1) (2024-10-03)
+
+
+### Fixes
+
+* add `become: false` to localhost delegated tasks ([89209d3](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/89209d320f3e2847cbe081fcf085fa0eddb3fe58))
+
+
+### Styles
+
+* minor fixes ([38073c4](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/38073c47180eb58011c19f0d36d0343144d23b33))
+
 ## [1.6.0](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.5.1...v1.6.0) (2024-09-14)
 
 
