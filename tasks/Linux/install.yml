@@ -20,6 +20,7 @@
       postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split()[2] )
   block:
     - name: 'Linux | Download the Postgres Exporter archive to a local folder'
+      become: false
       ansible.builtin.get_url:
         url: '{{ postgres_exporter_download_url }}/{{ postgres_exporter_archive_name }}.tar.gz'
         dest: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}.tar.gz'
@@ -29,6 +30,7 @@
       check_mode: false
 
     - name: 'Linux | Unarchive the Postgres Exporter binary'
+      become: false
       ansible.builtin.unarchive:
         src: '{{ postgres_exporter_download_path }}/{{ postgres_exporter_archive_name }}.tar.gz'
         dest: '{{ postgres_exporter_download_path }}'
