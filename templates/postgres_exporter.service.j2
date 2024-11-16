@@ -35,7 +35,7 @@ ExecStart={{ postgres_exporter_install_path }}/postgres_exporter \
 {% if postgres_exporter_disable_settings_metrics | bool %}
     --disable-settings-metrics \
 {% endif %}
-{% if postgres_exporter_extend_query_path | length > 0 %}
+{% if postgres_exporter_extend_query_path | length %}
     --extend.query-path {{ postgres_exporter_extend_query_path }} \
 {% endif %}
     --log.level {{ postgres_exporter_log_level }} \
