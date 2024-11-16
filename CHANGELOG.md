@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.6.2](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.1...v1.6.2) (2024-11-16)
+
+
+### Continuous Integration
+
+* use `ubuntu-22.04` instead of `ubuntu-24.04` ([b491248](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/b4912488d00e41aee624ae255ecc86cb5c3ba1f4))
+* use `ubuntu-24.04` instead of `ubuntu-latest` ([3a6cb49](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/3a6cb49104f866007664a29280813210018c7968))
+* used `tox` instead `gofrolist/molecule-action` ([#25](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/25)) ([c64e4eb](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/c64e4ebcd87c945e591f17a456718b1d4069737a))
+
+
+### Fixes
+
+* normalize `ansible_architecture` for windows ([6a8420a](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/6a8420aa386cf34a387fffda1661b87adddf9a1f))
+
+
+### Styles
+
+* updated jinja templates ([4a18fe3](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/4a18fe3a0ca933348067845ee9572da6b5759472))
+
 ## [1.6.1](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.0...v1.6.1) (2024-10-03)
 
 
