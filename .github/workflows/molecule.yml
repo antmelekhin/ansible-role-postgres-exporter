@@ -28,7 +28,7 @@ jobs:
 
   molecule:
     name: 'Molecule'
-    needs: 'lint'
+    # needs: 'lint'
     runs-on: 'ubuntu-22.04'
     strategy:
       matrix:
