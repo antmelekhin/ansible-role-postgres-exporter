@@ -18,13 +18,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: 'Install dependencies'
+      - name: 'Run linters'
         run: |
           pip3 install --no-cache-dir tox
-          ansible-galaxy install --role-file='requirements.yml'
-
-      - name: 'Run linters'
-        run: tox -e lint
+          tox -e lint
 
   molecule:
     name: 'Molecule'
