@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.4](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.3...v1.6.4) (2024-11-27)
+
+
+### Documentation
+
+* **README:** updated requirements and dependencies ([7112635](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/7112635bd683851ce277ed74bacb60bd6bce1274))
+
 ## [1.6.3](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.2...v1.6.3) (2024-11-16)
 
 
