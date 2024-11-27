@@ -79,7 +79,7 @@ generateNotes:
           hidden: false
         - type: 'test'
           section: 'Tests'
-          hidden: false
+          hidden: true
 
 prepare:
   - path: '@semantic-release/changelog'
