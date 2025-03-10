@@ -1,6 +1,6 @@
 ---
 # See available releases: https://github.com/prometheus-community/postgres_exporter/releases
-postgres_exporter_version: '0.17.0'
+postgres_exporter_version: '0.17.1'
 postgres_exporter_archive_name: 'postgres_exporter-{{ postgres_exporter_version }}.{{ __postgres_exporter_os }}-{{ __postgres_exporter_architecture }}'
 postgres_exporter_download_url: 'https://github.com/prometheus-community/postgres_exporter/releases/download/v{{ postgres_exporter_version }}'
 postgres_exporter_checksum_url: '{{ postgres_exporter_download_url }}/sha256sums.txt'
