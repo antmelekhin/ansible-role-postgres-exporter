@@ -1,4 +1,6 @@
 ---
+postgres_exporter_setup: 'install'
+
 # See available releases: https://github.com/prometheus-community/postgres_exporter/releases
 postgres_exporter_version: '0.17.1'
 postgres_exporter_archive_name: 'postgres_exporter-{{ postgres_exporter_version }}.{{ __postgres_exporter_os }}-{{ __postgres_exporter_architecture }}'
