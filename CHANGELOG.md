@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.9](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.8...v1.6.9) (2026-03-02)
+
+
+### Fixes
+
+* **version:** postgres_exporter updated to `0.19.1` release ([#31](https://github.com/antmelekhin/ansible-role-postgres-exporter/issues/31)) ([90b7918](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/90b79181f8d9ca233a1310cec7209b5657a7a960))
+
 ## [1.6.8](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.7...v1.6.8) (2025-09-30)
 
 
