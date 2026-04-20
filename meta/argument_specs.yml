@@ -6,6 +6,14 @@ argument_specs:
       - 'An Ansible role to install, configure and update the L(Postgres Exporter,https://github.com/prometheus-community/postgres_exporter).'
     author: 'Melekhin Anton'
     options:
+      postgres_exporter_setup:
+        type: 'str'
+        description: ''
+        choices:
+          - 'install'
+          - 'upgrade'
+          - 'uninstall'
+        default: 'install'
       postgres_exporter_version:
         type: 'str'
         description: 'The version of Postgres Exporter to install.'

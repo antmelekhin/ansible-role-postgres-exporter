@@ -1,9 +1,16 @@
 ---
 - name: 'Prepare for installing the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/pre-install.yml'
+  when: postgres_exporter_setup in ['install','upgrade']
 
 - name: 'Install the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/install.yml'
+  when: postgres_exporter_setup in ['install','upgrade']
 
 - name: 'Configure the Postgres Exporter'
   ansible.builtin.include_tasks: '{{ ansible_system }}/configure.yml'
+  when: postgres_exporter_setup in ['install','upgrade']
+
+- name: 'Uninstall the Postgres Exporter'
+  ansible.builtin.include_tasks: '{{ ansible_system }}/uninstall.yml'
+  when: postgres_exporter_setup in ['uninstall']

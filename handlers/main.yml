@@ -7,5 +7,11 @@
     state: 'restarted'
   when: not ansible_check_mode
 
+- name: 'Linux | Systemd daemon-reload'
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+  when: not ansible_check_mode
+
 - name: 'Windows | Restart the Postgres Exporter scheduled task'
   ansible.windows.win_shell: schtasks /end /tn 'Postgres Exporter'; schtasks /run /tn 'Postgres Exporter'
