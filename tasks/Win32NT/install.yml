@@ -14,9 +14,9 @@
 - name: 'Windows | Download and unarchive the Postgres Exporter'
   when:
     - not __postgres_exporter_is_installed.stat.exists or
-      ( __postgres_exporter_version_check.stderr_lines | length and
+      ( __postgres_exporter_version_check.stderr_lines | length > 0 and
       postgres_exporter_version not in __postgres_exporter_version_check.stderr_lines[0].split()[2] ) or
-      ( __postgres_exporter_version_check.stdout_lines | length and
+      ( __postgres_exporter_version_check.stdout_lines | length > 0 and
       postgres_exporter_version not in __postgres_exporter_version_check.stdout_lines[0].split()[2] )
   block:
     - name: 'Windows | Download the Postgres Exporter archive to a local folder'

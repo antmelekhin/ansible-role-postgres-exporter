@@ -1,9 +1,9 @@
 ---
 - name: 'Prepare for installing the Postgres Exporter'
-  ansible.builtin.include_tasks: '{{ ansible_system }}/pre-install.yml'
+  ansible.builtin.include_tasks: "{{ ansible_facts['system'] }}/pre-install.yml"
 
 - name: 'Install the Postgres Exporter'
-  ansible.builtin.include_tasks: '{{ ansible_system }}/install.yml'
+  ansible.builtin.include_tasks: "{{ ansible_facts['system'] }}/install.yml"
 
 - name: 'Configure the Postgres Exporter'
-  ansible.builtin.include_tasks: '{{ ansible_system }}/configure.yml'
+  ansible.builtin.include_tasks: "{{ ansible_facts['system'] }}/configure.yml"
