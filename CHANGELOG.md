@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.10](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.9...v1.6.10) (2026-04-30)
+
+
+### Fixes
+
+* use newer style ansible facts ([a72da83](https://github.com/antmelekhin/ansible-role-postgres-exporter/commit/a72da830fdadafa20bfc12c4bb7793a7b33fec5d))
+
 ## [1.6.9](https://github.com/antmelekhin/ansible-role-postgres-exporter/compare/v1.6.8...v1.6.9) (2026-03-02)
 
 
