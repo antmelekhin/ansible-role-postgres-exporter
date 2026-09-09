@@ -24,4 +24,4 @@
         owner: '{{ postgres_exporter_user }}'
         group: '{{ postgres_exporter_group }}'
         state: 'directory'
-        mode: 0755
+        mode: '0755'
